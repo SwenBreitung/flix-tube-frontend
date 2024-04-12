@@ -1,0 +1,38 @@
+<!-- *ngIf="layoutService.openSidebar" [@slideInOut]="layoutService.openSidebar ? 'in' : 'out'"  -->
+
+<section class="d-grow d-column">
+    <div class="d-flex p-16 gap8 head-container">
+        <div (click)="layoutService.toggleMenu()" class="button p-8 curser-pointer d-flex">
+            <mat-icon>menu</mat-icon>
+        </div>
+        <div class="img-container">
+            <img src="./../../../assets/img/logo_flix_tube.webp" alt="logo_goldene_cam">
+        </div>
+        <h1>FlixTube</h1>
+    </div>
+
+    <div class="p-8">
+        <div class="routing-container gap8 align-items-center ">
+            <mat-icon>home</mat-icon>
+            <a href="">Startseite</a>
+        </div>
+        <div class="routing-container gap8 align-items-center ">
+            <mat-icon>videocam</mat-icon>
+            <a href="">Videos</a>
+        </div>
+        <div class="routing-container gap8 align-items-center ">
+            <mat-icon>settings</mat-icon>
+            <a href="">Einstellungen</a>
+        </div>
+        <div>
+            <div class="routing-container gap8 align-items-center ">
+                <mat-icon>video_camera_front</mat-icon>
+                <a href="">Kurzvideos</a>
+            </div>
+            <div class="routing-container gap8 align-items-center ">
+                <mat-icon>movie</mat-icon>
+                <a href="">Filme</a>
+            </div>
+        </div>
+    </div>
+</section>
