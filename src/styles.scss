@@ -29,12 +29,12 @@
     //darkmode Main
     --main-color: rgb(242, 242, 242);
     --main-background: rgb(15, 15, 15);
-    --main-hover-color: rgb(38, 38, 38);
+    --main-hover-color: rgb(28, 99, 186);
     --main-focus-color: rgb(38, 38, 38);
     //Darkmode Second
     --secondary-color: rgb(31, 31, 31);
-    --secondary-background: rgb(242, 242, 242);
-    --secondary-hover-color: #E67E22;
+    --secondary-background: rgb(18, 18, 18);
+    --secondary-hover-color: rgb(244, 210, 210);
     --secondary-focus-color: #E67E22;
     //Darkmode Color
     --text-color: #EAEAEA;
@@ -86,6 +86,10 @@
     box-sizing: border-box;
 }
 
+* {
+    z-index: 1;
+}
+
 body {
     margin: 0;
     font-family: var(--font-primary);
@@ -97,19 +101,19 @@ body {
     height: 100vh;
 }
 
+app-universal-card,
+app-auth,
+app-root,
+app-main,
 .d-grow {
     flex-grow: 1;
     min-height: 1px;
     min-width: 1px
 }
 
-@mixin d-grow() {
-    display: flex;
-    flex-grow: 1;
-    min-height: 1px;
-    min-width: 1px
-}
-
+app-universal-card,
+app-auth,
+app-main,
 app-main-component,
 app-side-bar,
 app-root,
@@ -117,6 +121,13 @@ body,
 app-angular-command-store {
     display: flex;
     flex-direction: column;
+}
+
+@mixin d-grow() {
+    display: flex;
+    flex-grow: 1;
+    min-height: 1px;
+    min-width: 1px
 }
 
 .body * {

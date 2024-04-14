@@ -1,40 +1,43 @@
 @import './../../../styles.scss';
 section {
-    // max-width: 200px;
-    z-index: 999;
-    background-color: var(--main-background);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
     @include column;
-    .head-container {
-        @include center-flex;
-        .img-container {
-            // width: 50px;
-            // border-radius: 16px;
-            // background-color: var(--img-logo);
-            width: 100px;
-            /* Passen Sie die Breite nach Bedarf an */
-            /* Passen Sie die Höhe nach Bedarf an */
-            background-color: rgb(255, 0, 0);
-            /* Roter Hintergrund */
-            border-radius: 20px;
-            /* Abgerundete Ecken */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Optionaler Schatten für Tiefe */
+    .menu-container {
+        max-width: 282px;
+        z-index: 999;
+        background-color: var(--main-background);
+        .head-container {
             @include center-flex;
-            img {
-                height: 24px;
+            .img-container {
+                width: 100px;
+                background-color: rgb(255, 0, 0);
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                @include center-flex;
+                img {
+                    height: 32px;
+                }
             }
-        }
-        .button {
-            // padding: 8px;
-            &:hover {
-                border-radius: 50%;
-                background-color: var(--main-hover-color);
+            .button {
+                &:hover {
+                    border-radius: 50%;
+                    background-color: var(--main-hover-color);
+                }
             }
         }
     }
+}
+
+.background-color {
+    background-color: rgba(8, 8, 8, 0.5);
 }
 
 .routing-container {

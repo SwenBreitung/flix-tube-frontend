@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LayoutService {
   openSidebar = true;
+  isRegisterPage = true;
   constructor() { }
 
   
