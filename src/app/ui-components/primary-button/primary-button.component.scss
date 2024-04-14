@@ -1,0 +1,12 @@
+ @import './../../../styles.scss';
+ button {
+     background-color: var( --secondary-background);
+     color: var(--text-white);
+     padding: 16px;
+     padding-left: 32px;
+     padding-right: 32px;
+     border-radius: 16px;
+     &:hover {
+         background-color: var(--main-hover-color);
+     }
+ }

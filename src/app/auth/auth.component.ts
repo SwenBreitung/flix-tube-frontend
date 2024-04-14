@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from './../service/auth.service';
 import { Routes, RouterModule } from '@angular/router';
 import { HeaderComponent } from './../main/header/header.component';
@@ -13,6 +13,7 @@ import { UniversalCardComponent } from "../ui-components/universal-card/universa
     imports: [RouterModule, HeaderComponent, AuthFooterComponent, AuthHeaderComponent, UniversalCardComponent]
 })
 export class AuthComponent {
+  @Input() text: string ='';
   constructor(
     public authService: AuthService,
     ){}

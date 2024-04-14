@@ -3,91 +3,54 @@
 
 <!-- ----- step 1----- -->
 <!-- *ngIf="currentStep === 1" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" -->
-<form class="login">
+<form #contactForm="ngForm" (ngSubmit)="register(contactForm)" class="login">
     <div class="header-container">
         <div class="return-img">
-            <!-- <mat-icon [routerLink]="['/login']"><span class="material-symbols-outlined">
-                arrow_back
-                </span></mat-icon> -->
+            <mat-icon class="arrow_back" [routerLink]="['/login']">arrow_back</mat-icon>
         </div>
         <h1>Konto erstellen</h1>
         <div></div>
     </div>
-    <span>Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto</span>
-    <div style="width: 100%;">
+    <span>Mit deinem Namen und deiner E-Mail-Adresse hast du dich Angemeldet</span>
+    <div>
         <div class="input-fild">
-            <img src="./../../assets/log-in/person_filled.svg">
-            <!-- (blur)="onBlur('name')" -->
-            <!-- [class.error-border]="!isInputValid(nameField) && errorBooliean" (blur)="checkFieldValidity(nameField)" [(ngModel)]="user.name" (ngModelChange)="checkUsername()" name="name" #nameField="ngModel" -->
-            <input type="text" placeholder="Vor und Nachname" required minlength="4">
-        </div>
-        <div class="error-container">
-            <div class="error-message" *ngIf="">
-                <!-- {{ getErrorMessage(nameField, 4, 'name') }} -->
-            </div>
+            <mat-icon>account_circle</mat-icon>
+            <input type="text" placeholder="Username" required minlength="4">
         </div>
 
     </div>
 
-    <div style="width: 100%;">
+    <div>
         <div class="input-fild">
-            <img src="./../../assets/log-in/mail.svg">
-            <!-- [(ngModel)]="user.email" (blur)="onBlur('email')" placeholder="Email Adresse" [class.error-border]="!isInputValid(emailField)" (blur)="checkEmailValidity()" #emailField="ngModel" name="email" (ngModelChange)="checkEmail()" -->
-            <input type="email" required email>
+            <mat-icon>mail_outline</mat-icon>
+            <input type="email" [(ngModel)]="user.email" placeholder="Email Adresse" #emailField="ngModel" name="email" required email>
         </div>
-        <div class="error-container">
-            <!-- *ngIf="emailField.errors && (emailField.dirty || emailField.touched)" -->
-            <div class="error-message">
-                <!-- *ngIf="emailField.errors['required']" -->
-                <div>
-                    E-Mail ist erforderlich.
-                </div>
-                <!-- *ngIf="emailField.errors && !emailField.errors['required'] && emailField.errors['email']" -->
-                <div>
-                    Bitte eine korrekte E-Mail-Adresse angeben.
-                </div>
-            </div>
-        </div>
-        <!-- *ngIf="!emailField.errors || !emailField.errors['email']" -->
-        <div class="error-container">
-            <!-- *ngIf="errorBooliean" -->
-            <div class="error-message">
-                <!-- {{ getErrorMessage(emailField, 4, 'email') }} -->
-            </div>
-        </div>
+
     </div>
 
 
-    <div style="width: 100%;">
+    <div>
         <div class="input-fild">
-            <img src="./../../assets/log-in/lock.svg">
-            <!-- (blur)="checkPasswordValidity()" [class.error-border]="showErrorPassword" [(ngModel)]="user.passwort" name="password" #passwordField="ngModel" -->
-            <input type="password" placeholder="Passwort" required minlength="5">
+            <mat-icon>key</mat-icon>
+            <input type="password" [(ngModel)]="user.password" #passwordField="ngModel" name="password" placeholder="Passwort" required minlength="5">
         </div>
-        <div class="error-container">
-            <!-- *ngIf="showErrorPassword" -->
-            <div class="error-message">
-                <!-- {{ getErrorMessage(passwordField, 6, 'Passwort') }} -->
-            </div>
-        </div>
+
     </div>
 
-    <div class="checkbox-container">
-        <!-- (change)="onBlur('checkbox')" [(ngModel)]="checkbox" -->
-        <input class="cursor-pointer checkbox" type="checkbox" id="checkbox" name="datenschutz" required>
-        <label for="datenschutz">Ich stimme der Datenschutz <a href="URL_ZU_IHRER_DATENSCHUTZERKLÄRUNG">Datenschutzerklärung </a><span>zu</span>.</label>
-        <div class="error-container">
-            <!-- *ngIf="!checkbox && errorBooliean" -->
-            <div class="error-message">
-                Bitte Datenschutzerlärung zustimmen.
-            </div>
-        </div>
+    <div class="d-flex gap8">
+        <input class="cursor-pointer checkbox" [(ngModel)]="checkbox" type="checkbox" id="checkbox" name="datenschutz" required>
+        <label for="datenschutz">Ich stimme der Datenschutz 
+            <a  routerLink="/privacy">Datenschutzerklärung </a><span>zu</span>.
+        </label>
     </div>
+
     <div type="submit" class="buttons">
-        <div></div>
-        <!-- [disabled]="!contactForm.valid || !selectedImagePath"  -->
-        <button class="btn-login-user">Weiter</button>
+
+        <app-primary-button [disabled]="!contactForm.valid" type="submit" [text]="'Regestrieren'" (action)="register(contactForm)"></app-primary-button>
+        <app-secondary-button (action)="loginAsGuest()" type="button" [text]="'Zurück'"></app-secondary-button>
+
     </div>
+
 
 
 </form>

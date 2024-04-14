@@ -4,26 +4,25 @@ body {
     @include center-flex;
 }
 
-.google-login {
-    color: var(--second-text-color);
-    background-color: var( --background-color);
-    @include center-flex;
-    border-radius: 50px;
-    border: 1px solid var( --background-color);
-    padding: 16px;
-    gap: 8px;
-    img {
-        width: 24px;
-    }
-    &:hover {
-        border: 1px solid var(--header-color);
-        span {
-            font-size: 16px;
-            font-weight: bold;
-        }
-    }
-}
-
+// .google-login {
+//     color: var(--second-text-color);
+//     background-color: var( --background-color);
+//     @include center-flex;
+//     border-radius: 50px;
+//     border: 1px solid var( --background-color);
+//     padding: 16px;
+//     gap: 8px;
+//     img {
+//         width: 24px;
+//     }
+//     &:hover {
+//         border: 1px solid var(--header-color);
+//         span {
+//             font-size: 16px;
+//             font-weight: bold;
+//         }
+//     }
+// }
 .buttons {
     display: flex;
     gap: 16px;

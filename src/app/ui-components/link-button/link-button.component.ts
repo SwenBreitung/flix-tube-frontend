@@ -12,6 +12,8 @@ import { LayoutService } from './../../service/layout.service'
   templateUrl: './link-button.component.html',
   styleUrl: './link-button.component.scss'
 })
+
+
 export class LinkButtonComponent {
   //styles
   @Input() backgroundColor?: string;
@@ -25,7 +27,7 @@ export class LinkButtonComponent {
   @Input() hoverBackgroundColor?: string;  
 
   //links and co
-  @Input() buttonText: string = 'Dummi';
+  @Input() text: string = 'Dummi';
   @Input() linkUrl: string = '/register';
  
   constructor( 
