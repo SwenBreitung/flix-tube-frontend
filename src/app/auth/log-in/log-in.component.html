@@ -3,49 +3,19 @@
     <span>Wir empfehlen dir die E-Mail adresse zu nutzen, die du bei der Arbeit verwendest</span>
 
     <div class="input-fild">
-        <mat-icon>
-            person
-        </mat-icon>
-
-        <input type="text" required alt="" [(ngModel)]="name" name="userName" #userName="ngModel" placeholder="Username">
+        <mat-icon>person</mat-icon>
+        <input type="text" required alt="" [(ngModel)]="userName" name="userName" #userNameField="ngModel" placeholder="Username">
     </div>
-    <!-- <div class="error-container">
-            <div *ngIf="emailField.invalid && emailField.touched && !errorLogin" class="error-message">
-                Bitte gib eine gültige E-Mail-Adresse ein.
-            </div>
-            <div *ngIf="errorLogin" class="error-message">
-                Login fehlgeschlagen. Bitte überprüfe deine Eingaben.
-            </div>
-        </div> -->
-
-
 
     <div class="input-fild">
         <mat-icon>key</mat-icon>
-        <input type="password" required alt="" [(ngModel)]="passwort" name="email" #passwortField="ngModel" placeholder="Passwort eingabe">
+        <input type="password" required alt="" [(ngModel)]="password" name="email" #passwortField="ngModel" placeholder="Passwort eingabe">
     </div>
-    <div class="error-container">
-        <!-- <div *ngIf="errorLogin" class="error-message">
-                Login fehlgeschlagen. Bitte überprüfe deine Eingaben.
-            </div> -->
-    </div>
+    <div class="error-container"></div>
 
-
-    <!-- <div class="password curser-pointer" [routerLink]="['/password-reset']">Passwort vergessen</div> -->
-
-    <!-- <div class="d-flex divider-with-text">
-        <div class="border"></div>
-        <div class="text">ODER</div>
-        <div class="border"></div>
-    </div> -->
-    <!-- <div class="google-login curser-pointer" (click)="signInWithGoogle()">
-        <img src="./../../assets/log-in/google.svg" alt="">
-        <span>Anmelden bei Google</span>
-    </div> -->
     <div class="buttons">
         <app-primary-button type="submit" [text]="'Login'" (action)="login()"></app-primary-button>
-        <!-- <button type="submit" class="btn-login-user  curser-pointer">Anmelden</button> -->
         <app-secondary-button type="button" [text]="'Gast Login'" (action)="loginAsGuest()"></app-secondary-button>
-        <!-- <button type="button" class="btn-login-gast  curser-pointer" (click)="loginAsGuest()">Gäste-Login</button> -->
     </div>
+
 </form>

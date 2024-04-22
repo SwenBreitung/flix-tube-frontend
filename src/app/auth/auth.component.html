@@ -1,17 +1,11 @@
-<!-- *ngIf="authService.showBackground" -->
-<!-- <div class="animation-wrapper">
-    <img src="./../../assets/logo/logo.svg" alt="Sliding Bild">
-</div> -->
-
 <section class="column d-grow">
     <app-auth-header></app-auth-header>
 
-    <!-- <app-universal-card class="card">
-        <router-outlet></router-outlet>
-    </app-universal-card> -->
-
-    <div class="card">
-        <router-outlet></router-outlet>
+    <div class=" card-container d-grow ">
+        <app-universal-card>
+            <router-outlet></router-outlet>
+        </app-universal-card>
     </div>
+
     <app-auth-footer></app-auth-footer>
 </section>

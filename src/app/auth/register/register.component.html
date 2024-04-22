@@ -1,7 +1,5 @@
 <!-- <div class="login-out width-and-heigt-100p"> -->
 
-
-<!-- ----- step 1----- -->
 <!-- *ngIf="currentStep === 1" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" -->
 <form #contactForm="ngForm" (ngSubmit)="register(contactForm)" class="login">
     <div class="header-container">
@@ -15,7 +13,7 @@
     <div>
         <div class="input-fild">
             <mat-icon>account_circle</mat-icon>
-            <input type="text" placeholder="Username" required minlength="4">
+            <input type="text" [(ngModel)]="user.username" #usernameField="ngModel" name="username" placeholder="Username" required minlength="4">
         </div>
 
     </div>
@@ -34,7 +32,13 @@
             <mat-icon>key</mat-icon>
             <input type="password" [(ngModel)]="user.password" #passwordField="ngModel" name="password" placeholder="Passwort" required minlength="5">
         </div>
+    </div>
 
+    <div>
+        <div class="input-fild">
+            <mat-icon>key</mat-icon>
+            <input type="password" [(ngModel)]="user.password2" #passwordField="ngModel" name="password2" placeholder="wiederhole das Passwort bitte" required minlength="5">
+        </div>
     </div>
 
     <div class="d-flex gap8">
@@ -45,9 +49,10 @@
     </div>
 
     <div type="submit" class="buttons">
+        <!--  -->
+        <app-primary-button [disabled]="!contactForm.valid" [type]="'submit'" [text]="'Regestrieren'" (action)="register(contactForm)"></app-primary-button>
+        <app-secondary-button (action)="backToLogin()" [type]="'button'" [text]="'Zurück'"></app-secondary-button>
 
-        <app-primary-button [disabled]="!contactForm.valid" type="submit" [text]="'Regestrieren'" (action)="register(contactForm)"></app-primary-button>
-        <app-secondary-button (action)="loginAsGuest()" type="button" [text]="'Zurück'"></app-secondary-button>
 
     </div>
 

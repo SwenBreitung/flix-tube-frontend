@@ -18,12 +18,16 @@ export class SecondaryButtonComponent {
   @Input() padding?: string;
   @Input() margin?: string;
   @Input() hoverBackgroundColor?: string;
-
+  @Input() disabled: boolean = false;
   //function, input and co
   @Input() text: string = 'Click me'; 
   @Output() action = new EventEmitter<void>(); 
+  @Input() type:string = 'button';
+
 
   handleClick() {
     this.action.emit(); // Sendet das Event nach außen
   }
+
+  
 }

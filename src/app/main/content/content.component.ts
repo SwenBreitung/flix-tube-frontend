@@ -1,12 +1,27 @@
-import { Component } from '@angular/core';
+// import { Component } from '@angular/core';
 import { MessagesComponent } from './messages/messages.component';
+import { Component } from '@angular/core';
+import { RouterModule,  } from '@angular/router';
+
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [MessagesComponent],
+  imports: [ RouterModule,],
   templateUrl: './content.component.html',
-  styleUrl: './content.component.scss'
+  styleUrls: ['./content.component.scss']
 })
 export class ContentComponent {
+  constructor(
+    // private router: Router
+  ) {}
+
+  ngOnInit() {
+    console.log('ContentComponent initialized');
+  }
+
+  ngOnDestroy() {
+    console.log('ContentComponent destroyed');
+  }
+
 
 }

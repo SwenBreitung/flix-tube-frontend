@@ -16,26 +16,30 @@
         </div>
 
         <div class="p-8">
-            <div class="routing-container gap8 align-items-center ">
+            <div (click)="loadStartPage()" class="routing-container curser-pointer gap8 align-items-center ">
                 <mat-icon>home</mat-icon>
-                <a href="">Startseite</a>
+                <a>Startseite</a>
             </div>
-            <div class="routing-container gap8 align-items-center ">
+            <div class="routing-container gap8 align-items-center curser-pointer">
                 <mat-icon>videocam</mat-icon>
                 <a href="">Videos</a>
             </div>
-            <div class="routing-container gap8 align-items-center ">
+            <div class="routing-container gap8 align-items-center curser-pointer">
                 <mat-icon>settings</mat-icon>
                 <a href="">Einstellungen</a>
             </div>
             <div>
-                <div class="routing-container gap8 align-items-center ">
+                <div (click)="loadtestFile()" class="routing-container gap8 align-items-center curser-pointer">
                     <mat-icon>video_camera_front</mat-icon>
-                    <a href="">Kurzvideos</a>
+                    <a>Kurzvideos</a>
                 </div>
-                <div class="routing-container gap8 align-items-center ">
+                <div class="routing-container gap8 align-items-center curser-pointer">
                     <mat-icon>movie</mat-icon>
                     <a href="">Filme</a>
+                </div>
+                <div (click)="loadUploadFile()" class="routing-container gap8 align-items-center curser-pointer">
+                    <mat-icon>upload_file</mat-icon>
+                    <a>Upload</a>
                 </div>
             </div>
         </div>

@@ -101,6 +101,7 @@ body {
     height: 100vh;
 }
 
+// app-video-upload,
 app-register,
 app-log-in,
 app-universal-card,
@@ -113,6 +114,7 @@ app-main,
     min-width: 1px
 }
 
+// app-video-upload,
 app-register,
 app-log-in,
 app-universal-card,
@@ -433,4 +435,14 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: var(--main-background);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
