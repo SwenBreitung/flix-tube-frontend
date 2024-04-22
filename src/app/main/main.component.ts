@@ -7,13 +7,14 @@ import { LayoutService } from './../service/layout.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, Input } from '@angular/core';
+import { RouterModule } from "@angular/router";
 @Component({
     selector: 'app-main',
     standalone: true,
     templateUrl: './main.component.html',
     styleUrl: './main.component.scss',
     providers: [provideAnimations()], 
-    imports: [HeaderComponent, SidebarComponent, ContentComponent,MatIconModule],
+    imports: [HeaderComponent, SidebarComponent, ContentComponent,MatIconModule,RouterModule],
     // animations: [
     //     trigger('slideInOut', [
     //       state('in', style({ transform: 'translateX(0%)', visibility: 'visible', pointerEvents: 'auto' })),
@@ -27,5 +28,5 @@ export class MainComponent {
     constructor(
         public layoutService: LayoutService
     
-      ) {}
+    ) {}
 }

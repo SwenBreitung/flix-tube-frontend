@@ -66,18 +66,23 @@ export class SidebarComponent {
 
   // this.router.navigate(['/main/upload']);
   loadUploadFile() {
-    this.router.navigate(['/main/upload']);
+    this.router.navigate(['main/upload']);
+    // this.router.url.includes('/main/upload');
+    // this.router.navigate(['/main/upload']);
     this.layoutService.openSidebar = false;
   }
 
   // this.router.navigate(['/main/start-page']);
 
   loadStartPage() {
-    this.router.navigate(['/main/start-page']);
+    this.router.navigate(['main/start-page']);
+    //  this.router.url.includes('/main/start-page');
+    // this.router.navigate(['/main/start-page']);
     this.layoutService.openSidebar = false;
   }
   
   loadtestFile(){
+
     this.router.navigate(['/main/test']);
     this.layoutService.openSidebar = false;
   }

@@ -13,11 +13,34 @@ import { UpNextVideosComponent } from './main/content/up-next-videos/up-next-vid
 
 export const routes: Routes = [
     { path: 'main', component: MainComponent , children: [
-      // { path: '', component: StartPageComponent },
+    { path: '', component: StartPageComponent },
     { path: 'upload', component: VideoUploadComponent },
     { path: 'start-page', component: StartPageComponent },
     { path: 'test', component: UpNextVideosComponent },
     ]
+    // {
+    //   path: 'main',
+    //   component: MainComponent,
+    //   children: [
+    //     {
+    //       path: '',
+    //       pathMatch: 'full',
+    //       loadComponent: () => import('./main/content/start-page/start-page.component').then(m => m.StartPageComponent)
+    //     },
+    //     {
+    //       path: 'upload',
+    //       loadComponent: () => import('./main/content/video-upload/video-upload.component').then(m => m.VideoUploadComponent)
+    //     },
+    //     {
+    //       path: 'start-page',
+    //       loadComponent: () => import('./main/content/start-page/start-page.component').then(m => m.StartPageComponent)
+    //     },
+    //     // {
+    //     //   path: 'test',
+    //     //   loadComponent: () => import('./up-next-videos.component').then(m => m.UpNextVideosComponent)
+    //     // }
+    //   ]
+    
   },
 
     { path: '', component: AuthComponent, children: [
