@@ -1,0 +1,90 @@
+@import './../../../styles.scss';
+@import './../auth.component.scss';
+.login-out {
+    @include center-flex;
+    width: 100%;
+    height: 100%;
+}
+
+// button {
+//     @include center-flex;
+//     border-radius: 20px;
+//     width: 90px;
+//     height: 30px;
+//     border: none;
+// }
+// .btn-login-user {
+//     background-color: var( --header-color);
+//     color: var(--text-white);
+//     &:hover {
+//         background-color: var( --your-chat-background-color);
+//     }
+// }
+// header {
+//     width: 100%;
+//     display: flex;
+//     align-items: start;
+// }
+mat-icon {
+    width: 28px;
+}
+
+.arrow_back {
+    cursor: pointer;
+    &:hover {
+        color: var(--main-hover-color);
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    display: flex;
+    gap: 16px;
+}
+
+.header-container {
+    width: 100%;
+    @include center-flex($justify-content: space-between);
+}
+
+.checkbox {
+    padding: 8px;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.input-fild {
+    input {
+        border: none;
+        width: 100%;
+        &:focus {
+            outline: none;
+        }
+    }
+    &:focus-within {
+        border: 1px solid var(--main-hover-color) !important;
+    }
+    &:hover {
+        border: 1px solid var(--main-hover-color)!important;
+    }
+}
+
+a {
+    color: var(--secondary-color);
+}
+
+#checkbox {
+    width: 16px;
+}
+
+@media (max-width:700px) {
+    .button-return-login {
+        width: 120px
+    }
+}

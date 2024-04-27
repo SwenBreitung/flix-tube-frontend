@@ -1,0 +1,36 @@
+<!-- *ngIf="layoutService.openSidebar" [@slideInOut]="layoutService.openSidebar ? 'in' : 'out'"  -->
+
+<section class="d-flex" *ngIf="layoutService.openSidebar" [ngStyle]="layoutService.openSidebar ? {'background-color': 'rgba(8, 8, 8, 0.5)'} : {'z-index': '0'}" (click)="layoutService.toggleMenu()">
+    <div class=" menu-container d-grow d-column">
+        <!-- <section [@slideInOut]="layoutService.openSidebar ? 'in' : 'out'" [ngStyle]="layoutService.openSidebar ? 
+    {'background-color': 'rgba(8, 8, 8, 0.5)', 'visibility': visibility, 'pointer-events': pointerEvents, 'z-index': '1000'} : 
+    {'visibility': visibility, 'pointer-events': 'none', 'z-index': '0'}" (click)="layoutService.toggleMenu()"> -->
+        <!-- <div (click)="$event.stopPropagation();" [@slideInOut]="layoutService.openSidebar ? 'in' : 'out'" class=" menu-container d-grow d-column"> -->
+        <div class="d-flex pt-24 gap8 head-container">
+            <div (click)="layoutService.toggleMenu()" class="button p-8 curser-pointer d-flex">
+                <mat-icon>menu</mat-icon>
+            </div>
+            <div class="img-container">
+                <img src="./../../../assets/img/logo_flix_tube.webp" alt="logo_goldene_cam">
+            </div>
+            <h1>FlixTube</h1>
+        </div>
+
+        <div class="p-8">
+            <div (click)="loadStartPage()" class="routing-container curser-pointer gap8 align-items-center ">
+
+                <a>Startseite</a>
+            </div>
+
+
+            <div>
+
+
+                <div (click)="loadUploadFile()" class="routing-container gap8 align-items-center curser-pointer">
+
+                    <a>Upload</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

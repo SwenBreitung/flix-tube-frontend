@@ -1,0 +1,23 @@
+@import './../../../styles.scss';
+.img-container {
+    // width: 50px;
+    // border-radius: 16px;
+    // background-color: var(--img-logo);
+    width: 100px;
+    /* Passen Sie die Breite nach Bedarf an */
+    height: 32px;
+    /* Passen Sie die Höhe nach Bedarf an */
+    background-color: rgb(255, 0, 0);
+    /* Roter Hintergrund */
+    border-radius: 20px;
+    /* Abgerundete Ecken */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Optionaler Schatten für Tiefe */
+    @include center-flex;
+    img {
+        height: 32px;
+    }
+}

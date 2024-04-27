@@ -1,0 +1,15 @@
+<div class="search-container">
+    <div class="searchbar">
+        <div class="input-fild" [class.focused]="inputFocused">
+            <input (focus)="inputFocused = true" (input)="onInputChange($event,1)" type="text" placeholder="code learning durchsuchen">
+        </div>
+    </div>
+    @if (searchResults && searchResults.length >0 ) {
+    <div *ngIf="" class="search-result-items">
+        <!-- @for (let input of searchResults; track $index) {} -->
+        <div *ngFor="let input of searchResults">
+            <!-- <div class="search-result-item curser-pointer">{{ input.name }}</div> -->
+        </div>
+    </div>
+    }
+</div>

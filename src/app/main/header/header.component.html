@@ -1,0 +1,28 @@
+<section class="d-flex p-16">
+    <div class="d-flex gap8 head-container">
+        <div (click)="layoutService.toggleMenu()" class="button p-8 curser-pointer d-flex">
+            <mat-icon>menu</mat-icon>
+            <!-- click me asdsa test -->
+        </div>
+        <app-logo></app-logo>
+        <h1>FlixTube</h1>
+    </div>
+
+    <app-searchbar class="d-grow"></app-searchbar>
+
+    <div class="d-flex align-items-center">
+        <div (mouseenter)="HoverUploadText = true" (mouseleave)="HoverUploadText = false" class="upload-container p-8">
+            <mat-icon>videocam</mat-icon>
+        </div>
+        <div>
+            <!-- <mat-icon>glocke</mat-icon> -->
+            <!-- <span>Neue Benachrichtigung</span> -->
+        </div>
+        <div>
+            <img src="" alt="Logo user">
+        </div>
+        <div>
+            <span [class.upload-text-hover]="HoverUploadText" class="upload-text">Video Hochladen</span>
+        </div>
+    </div>
+</section>

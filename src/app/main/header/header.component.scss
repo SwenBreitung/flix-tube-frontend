@@ -1,0 +1,39 @@
+@import './../../../styles.scss';
+section {
+    justify-content: space-between;
+    width: 100%;
+    .head-container {
+        @include center-flex;
+    }
+    .button {
+        // padding: 8px;
+        &:hover {
+            border-radius: 50%;
+            background-color: var(--main-hover-color);
+        }
+    }
+}
+
+.upload-container {
+    position: relative;
+    border-radius: 50%;
+    @include center-flex;
+    &:hover {
+        background-color: var(--main-hover-color);
+    }
+}
+
+.upload-text {
+    position: absolute;
+    display: none;
+}
+
+.upload-text-hover {
+    display: flex;
+    position: absolute;
+    padding-top: 24px;
+    right: 88px;
+    &:hover {
+        display: flex;
+    }
+}

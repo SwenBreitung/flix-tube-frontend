@@ -1,0 +1,45 @@
+@import './../../../styles.scss';
+section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    @include column;
+    .menu-container {
+        max-width: 282px;
+        z-index: 999;
+        background-color: var(--main-background);
+        .head-container {
+            @include center-flex;
+            .img-container {
+                width: 100px;
+                background-color: rgb(255, 0, 0);
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                @include center-flex;
+                img {
+                    height: 32px;
+                }
+            }
+            .button {
+                &:hover {
+                    border-radius: 50%;
+                    background-color: var(--main-hover-color);
+                }
+            }
+        }
+    }
+}
+
+.background-color {
+    background-color: rgba(8, 8, 8, 0.5);
+}
+
+.routing-container {
+    padding-top: 8px;
+}

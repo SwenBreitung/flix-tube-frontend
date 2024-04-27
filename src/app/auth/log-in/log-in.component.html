@@ -1,0 +1,21 @@
+<form (ngSubmit)="login()" class="login">
+    <h1>Anmeldung</h1>
+    <span>Wir empfehlen dir die E-Mail adresse zu nutzen, die du bei der Arbeit verwendest</span>
+
+    <div class="input-fild">
+        <mat-icon>person</mat-icon>
+        <input type="text" required alt="" [(ngModel)]="userName" name="userName" #userNameField="ngModel" placeholder="Username">
+    </div>
+
+    <div class="input-fild">
+        <mat-icon>key</mat-icon>
+        <input type="password" required alt="" [(ngModel)]="password" name="email" #passwortField="ngModel" placeholder="Passwort eingabe">
+    </div>
+    <div class="error-container"></div>
+
+    <div class="buttons">
+        <app-primary-button type="submit" [text]="'Login'" (action)="login()"></app-primary-button>
+        <app-secondary-button type="button" [text]="'Gast Login'" (action)="loginAsGuest()"></app-secondary-button>
+    </div>
+
+</form>
