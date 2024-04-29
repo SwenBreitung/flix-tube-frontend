@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -33,6 +32,7 @@ export class LinkButtonComponent {
    constructor( 
      public router: Router, 
      public layoutService:LayoutService,
+     private activatedRoute: ActivatedRoute,
    ) {
      this.router.events.pipe(
        filter(event => event instanceof NavigationEnd)
@@ -41,6 +41,6 @@ export class LinkButtonComponent {
      });
    }
   
-   // private activatedRoute: ActivatedRoute,
+   
    
 }

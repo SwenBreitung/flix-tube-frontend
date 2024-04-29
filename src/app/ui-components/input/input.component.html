@@ -1,3 +1,12 @@
-<div class="input-container" style="background-color: aliceblue;">
-    <input type="text">
+<div class="input-container" style="background-color: aliceblue" [style]="{
+    'background-color': backgroundColor || null,
+    'border-color': borderColor || null,
+    'border-width': borderWidth || null,
+    'border-radius': borderRadius || null,
+    width: width || null,
+    height: height || null,
+    padding: padding || null,
+    margin: margin || null
+}">
+    <input [type]="type" [attr.minlength]="5" [placeholder]="placeholder" [(ngModel)]="value" (input)="onChange(value)" (blur)="onTouched()">
 </div>

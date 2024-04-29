@@ -1,15 +1,75 @@
-<p>video-upload works!</p>
+<section class="flex-column d-grow">
+    <app-universal-card>
+        <div class="upload-container flex-column d-grow">
+            <h1>Upload Videos</h1>
+            <form #contactForm="ngForm" (ngSubmit)="videoUpload(contactForm)">
+                <div class="gap8 flex-column">
+                    <h2>Titel</h2>
+                    <app-input [(ngModel)]="videoContent.title" #titleField="ngModel" name="title" required></app-input>
+                    <div *ngIf="titleField.errors?.['required']">
+                        Titel ist erforderlich.
+                    </div>
+                    <div *ngIf="titleField.errors?.['minlength']">
+                        Titel muss mindestens {{ titleField.errors?.['minlength']?.requiredLength }} Zeichen lang sein, aktuell sind es nur {{ titleField.errors?.['minlength']?.actualLength }} Zeichen.
+                    </div>
+                </div>
+                <div class="gap8 flex-column">
+                    <h2>Text</h2>
+                    <app-input [(ngModel)]="videoContent.description" #descriptionField="ngModel" name="description" required></app-input>
+                    <div *ngIf="descriptionField.errors?.['required']">
+                        Beschreibung ist erforderlich.
+                    </div>
+                    <div *ngIf="descriptionField.errors?.['minlength']">
+                        Beschreibung muss mindestens {{ descriptionField.errors?.['minlength']?.requiredLength }} Zeichen lang sein, aktuell sind es nur {{ descriptionField.errors?.['minlength']?.actualLength }} Zeichen.
+                    </div>
+                </div>
+                <div class="gap8 flex-column">
+                    <h2>Thumbnail hinzufügen</h2>
 
+                    <div class="upload-drop-zone" (dragover)="onDragOver($event)" (drop)="onImageDrop($event)" (dragleave)="onDragLeave($event)" [ngStyle]="{
+              border: imageUrl
+                ? '2px dashed var(--success-color)'
+                : '2px dashed var(--main-border-color)'
+            }">
+                        <span *ngIf="!imageUrl">
+              Ziehen Sie Ihre Bilder hierhin oder klicken Sie, um Bilder
+              auszuwählen</span
+            >
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="img uploadet " />
+          </div>
 
-<div>
-    <div>
-        <app-input></app-input>
-        <app-input></app-input>
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            multiple
+            hidden
+            #fileImageInput
+          />
+        </div>
 
-    </div>
+        <div class="gap8 flex-column">
+          <h2>Video hinzufügen</h2>
 
-    <div class="drop-zone" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
-        Ziehe Dateien hierhin oder klicke, um Dateien auszuwählen.
-    </div>
-    <input type="file" multiple (change)="onFileSelected($event)" hidden>
-</div>
+          <div
+            class="drop-zone"
+            (dragover)="onDragOver($event)"
+            (drop)="onVideoDrop($event)"
+          >
+            <span *ngIf="!uploadedVideoFileName" class="p-8"
+              >Ziehen Sie ihr Video hierhin oder klicke, um Dateien auszuwählen.
+            </span>
+
+                        <span *ngIf="uploadedVideoFileName" class="p-8">
+              {{ uploadedVideoFileName }}
+            </span>
+                    </div>
+                    <input type="file" multiple (change)="onVideoFileSelected($event)" #fileVideoInput hidden />
+                </div>
+                <div type="submit " class="buttons">
+                    <app-primary-button [type]="'submit'" [text]="'Upload'" (action)="videoUpload(contactForm)"></app-primary-button>
+                    <app-secondary-button (action)="resetForm()" [type]="'button'" [text]="'Reset'"></app-secondary-button>
+                </div>
+            </form>
+        </div>
+    </app-universal-card>
+</section>
