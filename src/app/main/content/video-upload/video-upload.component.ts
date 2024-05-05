@@ -54,7 +54,7 @@ export class VideoUploadComponent {
         formData.append('title', this.videoContent.title);
         formData.append('description', this.videoContent.description);
         formData.append('video', this.uploadedVideoFile);
-        formData.append('video_image', this.uploadedImageFile);
+        formData.append('video_imgs', this.uploadedImageFile);
       }
       console.log('test', formData);
       const csrftoken = this.getCookie('csrftoken');
@@ -156,13 +156,6 @@ export class VideoUploadComponent {
   }
 
 
-  // handleVideoFiles(file: File) {
-  //   console.log('Datei file:', file);
-  //   console.log('Datei hochgeladen:', file.name);
-  //   this.uploadedVideoFile = file;
-  //   this.uploadedVideoFileName = file.name;
-  //   console.log('Datei uploadfile:', this.uploadedVideoFile);
-  // }
   handleVideoFiles(files: File) {
       const file = files;
       if (file && file.type.startsWith('video/')) { // Überprüft, ob es sich um eine Videodatei handelt
@@ -175,11 +168,11 @@ export class VideoUploadComponent {
     }
   }
 
-  //Img Upload
+
   onDragLeave(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
-    // Optional: Visual feedback
+  
   }
 
 

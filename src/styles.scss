@@ -103,6 +103,7 @@ body {
     height: 100vh;
 }
 
+app-start-page,
 app-video-upload,
 app-register,
 app-log-in,
@@ -129,6 +130,10 @@ body,
 app-angular-command-store {
     display: flex;
     flex-direction: column;
+}
+
+app-start-page {
+    display: flex;
 }
 
 @mixin d-grow() {

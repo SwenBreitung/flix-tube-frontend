@@ -1,1 +1,12 @@
-<p>start-page works!</p>
+<div class="start-page-container">
+    <div (click)="loadVideo(item.id)" *ngFor="let item of backendService.allContent" class="preview-card flex-column">
+        <img [src]="item.video_imgs" alt="">
+        <div class="d-flex title">
+            <div class="d-flex views">
+                <span>0</span>
+                <span>Aufrufe</span>
+            </div>
+            <h2>{{item.title}} </h2>
+        </div>
+    </div>
+</div>

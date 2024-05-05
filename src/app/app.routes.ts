@@ -7,6 +7,7 @@ import { PrivacyComponent } from './ui-components/privacy/privacy.component';
 import { LogInComponent } from './auth/log-in/log-in.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthComponent } from './auth/auth.component';
+import { VideoPageComponent } from './main/content/video-page/video-page.component';
 
 
 export const routes: Routes = [
@@ -14,6 +15,12 @@ export const routes: Routes = [
         { path: '', component: StartPageComponent },
         { path: 'upload', component: VideoUploadComponent },
         { path: 'start-page', component: StartPageComponent },
+        // { path: 'video-page', component: VideoPageComponent },
+        {
+          path: 'video/:id',
+          component: VideoPageComponent,
+        },
+        
         ],
     },   
     { path: '', component: AuthComponent, children: [
