@@ -1,2 +1,54 @@
-<p>video-page works!</p>
-<video [src]=""></video>
+<section>
+    <div class="flex-column">
+        <div class="gap8 flex-column">
+            <vg-player (onPlayerReady)="onPlayerReady($event)">
+                <video style="width: 100%; height: 500px" #video [vgMedia]="$any(video)" id="singleVideo" preload="auto" src="{{ videoContent.videoFile }}" crossorigin controls></video>
+            </vg-player>
+            <h1>{{ videoContent.title }}</h1>
+            <div class="d-flex">
+                <div class="d-flex video-interaction-containe">
+                    <div class="d-flex gap8">
+                        <app-user-img></app-user-img>
+                        <div class="flex-column">
+                            <span>Username</span>
+                            <span>0 Abonenten</span>
+                        </div>
+                    </div>
+                    <div class="d-flex content-interaction-container p-8 gap8">
+                        <div class="vote-container    d-flex">
+                            <div class="d-flex p-8 curser-pointer vote-field-left ">
+                                <span class="material-symbols-outlined">
+                                    thumb_up
+                                </span>
+                                <span>999</span>
+                            </div>
+                            <div class="container-divider-container">
+                                <div class="container-divider  "></div>
+                            </div>
+                            <div class="p-8 curser-pointer vote-field-right">
+
+                                <span class="material-symbols-outlined">
+                                    thumb_down
+                                </span>
+                            </div>
+                        </div>
+                        <app-shared-button (click)="sharedLink(videoUrl)" [text]="'Teilen'"></app-shared-button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="info-container p-8 flex-column gap8">
+                <span>{{ videoContent.created_at }}</span>
+                <span>0 Aufrufe</span>
+                <span>{{ videoContent.description }}</span>
+            </div>
+        </div>
+        <div>
+            <span>chat</span>
+        </div>
+    </div>
+
+    <div>
+        <h2>Videovorschläge</h2>
+    </div>
+</section>

@@ -1,0 +1,60 @@
+@import './../../../../styles.scss';
+section {
+    display: flex;
+    padding: 16px;
+}
+
+.info-container {
+    background-color: var(--main-focus-color);
+    border-radius: 20px;
+}
+
+.video-interaction-containe {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.vote-container {
+    @include center-flex;
+}
+
+.vote-field-left {
+    border-radius: 20px 0 0 20px;
+}
+
+.vote-field-right {
+    border-radius: 0 20px 20px 0;
+}
+
+.vote-field-left,
+.vote-field-right {
+    background-color: var(--main-focus-color);
+    @include center-flex;
+    &:hover {
+        background-color: var( --main-border-color);
+    }
+}
+
+.container-divider-container {
+    background-color: var(--main-focus-color);
+    .container-divider {
+        height: 80%;
+        width: 1px;
+        background-color: var(--main-border-color);
+    }
+}
+
+.outlined-icon {
+    color: green !important;
+    border: red !important;
+    /* Setzt die Füllfarbe auf transparent */
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.content-interaction-container {
+    @include center-flex;
+}

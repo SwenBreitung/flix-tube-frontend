@@ -7,7 +7,8 @@ export class VideoContent {
     created_at:string;
     updated_at:string;
     video_imgs: string | File | undefined = undefined;
-
+    viewCount:number;
+    
     constructor(obj?: any) {
         this.username = obj?.username ?? '';
         this.id = obj?.uid ?? '';
@@ -17,6 +18,7 @@ export class VideoContent {
         this.created_at = obj?.created_at ?? '';
         this.updated_at = obj?.updated_at ?? '';
         this.video_imgs = obj?.uploadedImageFile ?? '';
+        this.viewCount = obj?.viewCount ?? '';
     }
 
     public toJson() {
@@ -29,6 +31,7 @@ export class VideoContent {
             description: this.description,
             updated_at: this.updated_at,
             video_imgs: this.video_imgs,
+            viewCount: this.viewCount,
         };
     }
 }

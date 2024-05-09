@@ -24,8 +24,7 @@ export class StartPageComponent {
   }
 
   loadVideo(id:string){
-    this.router.navigate(['video', id]);
-    // this.router.navigate(['main/video-page']);
+    this.router.navigate(['/main/video-page', id]);
   }
 
   

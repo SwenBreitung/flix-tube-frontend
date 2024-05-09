@@ -16,11 +16,7 @@ export const routes: Routes = [
         { path: 'upload', component: VideoUploadComponent },
         { path: 'start-page', component: StartPageComponent },
         // { path: 'video-page', component: VideoPageComponent },
-        {
-          path: 'video/:id',
-          component: VideoPageComponent,
-        },
-        
+        { path: 'video-page/:id',component: VideoPageComponent },
         ],
     },   
     { path: '', component: AuthComponent, children: [
