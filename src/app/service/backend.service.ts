@@ -21,8 +21,8 @@ export class BackendService {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        this.allContent = data.results; // Befülle die Variable mit den erhaltenen Daten
-        console.log(this.allContent); // Logge die Daten zur Überprüfung
+        this.allContent = data;
+        console.log('allContent',data); 
         // Hier kannst du weiteren Code hinzufügen, um die Daten zu verwenden
       })
       .catch(error => console.error('Error fetching video content:', error));

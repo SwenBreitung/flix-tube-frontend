@@ -78,7 +78,9 @@ export class VideoPageComponent  {
   
       }
     }
-
+    customAction(){
+      console.log('test button')
+    }
 
   // updateTime() {  
     

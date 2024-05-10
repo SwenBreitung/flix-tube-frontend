@@ -1,8 +1,37 @@
 <section>
     <div class="flex-column">
         <div class="gap8 flex-column">
+            controls
             <vg-player (onPlayerReady)="onPlayerReady($event)">
-                <video style="width: 100%; height: 500px" #video [vgMedia]="$any(video)" id="singleVideo" preload="auto" src="{{ videoContent.videoFile }}" crossorigin controls></video>
+                <video style="width: 100%; height: 500px" #video [vgMedia]="$any(video)" id="singleVideo" preload="auto" src="{{ videoContent.videoFile }}" crossorigin></video>
+                <!-- <video style="width: 100%; height: 500px" #video [vgMedia]="$any(video)" id="singleVideo" preload="auto" src="{{ videoContent.videoFile }}" crossorigin></video> -->
+                <vg-overlay-play></vg-overlay-play>
+                <vg-buffering vgFor="singleVideo"></vg-buffering>
+                <vg-scrub-bar>
+                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                </vg-scrub-bar>
+
+                <vg-controls>
+                    <div class="d-flex">
+                        <vg-play-pause vgFor="singleVideo"></vg-play-pause>
+                        <vg-playback-button></vg-playback-button>
+                    </div>
+                    <div class="d-flex">
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                        <!-- <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar> -->
+                        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                    </div>
+                    <div class="d-flex">
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
+                    </div>
+                    <vg-fullscreen></vg-fullscreen>
+                    <!-- <button class="custom-fullscreen-button">
+                        <img src="path/to/your/angular-image.png" alt="Fullscreen"/>
+                    </button> -->
+                </vg-controls>
             </vg-player>
             <h1>{{ videoContent.title }}</h1>
             <div class="d-flex">

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';  // Importiere CommonModule
 import { BackendService } from './../../../service/backend.service'
 import { Router,RouterModule  } from '@angular/router';
+
+
 @Component({
   selector: 'app-start-page',
   standalone: true,
@@ -19,8 +21,9 @@ export class StartPageComponent {
 
 
   ngOnInit(): void {
-    this.backendService.loadeContentData()
+    this.backendService.loadeContentData();
     console.log('Komponente initialisiert',this.backendService.videoID);
+    console.log('allContent initialisiert',this.backendService.allContent);
   }
 
   loadVideo(id:string){

@@ -58,3 +58,18 @@ section {
 .content-interaction-container {
     @include center-flex;
 }
+
+// vg-scrub-bar {
+//     height: 10px;
+//     /* Höhe des Scrub-Bars */
+//     background-color: #ccc;
+//     /* Farbe des Hintergrunds */
+// }
+// vg-scrub-bar .scrubber {
+//     width: 10px;
+//     /* Breite des Zieh-Handlers */
+//     height: 100%;
+//     /* Höhe des Zieh-Handlers */
+//     background-color: #f00;
+//     /* Farbe des Zieh-Handlers */
+// }
