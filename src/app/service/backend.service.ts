@@ -20,9 +20,9 @@ export class BackendService {
     fetch(this.videosContentURL)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        console.log('allContentbevore',data);
         this.allContent = data;
-        console.log('allContent',data); 
+        console.log('allContent',this.allContent); 
         // Hier kannst du weiteren Code hinzufügen, um die Daten zu verwenden
       })
       .catch(error => console.error('Error fetching video content:', error));
@@ -42,7 +42,7 @@ export class BackendService {
         return response.json();
       })
       .then(data => {
-        console.log(data);
+        console.log('fetchData',data);
         return data;
       })
       .catch(error => {

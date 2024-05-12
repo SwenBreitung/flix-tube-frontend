@@ -3,8 +3,7 @@
         <div class="gap8 flex-column">
             controls
             <vg-player (onPlayerReady)="onPlayerReady($event)">
-                <video style="width: 100%; height: 500px" #video [vgMedia]="$any(video)" id="singleVideo" preload="auto" src="{{ videoContent.videoFile }}" crossorigin></video>
-                <!-- <video style="width: 100%; height: 500px" #video [vgMedia]="$any(video)" id="singleVideo" preload="auto" src="{{ videoContent.videoFile }}" crossorigin></video> -->
+                <video style="width: 100%; height: 500px" #video [vgMedia]="$any(video)" id="singleVideo" preload="auto" src="{{ videoContent.videoFile }}{{currentQuality}}" crossorigin (click)="isMenuOpen()"></video>
                 <vg-overlay-play></vg-overlay-play>
                 <vg-buffering vgFor="singleVideo"></vg-buffering>
                 <vg-scrub-bar>
@@ -15,12 +14,12 @@
                 <vg-controls>
                     <div class="d-flex">
                         <vg-play-pause vgFor="singleVideo"></vg-play-pause>
-                        <vg-playback-button></vg-playback-button>
+
                     </div>
                     <div class="d-flex">
-                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
-                        <!-- <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar> -->
-                        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                        <vg-time-display *ngIf="currentTimeVisible" vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                        <vg-time-display *ngIf="!currentTimeVisible" vgProperty="left" vgFormat="mm:ss"></vg-time-display>
                         <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
                     </div>
                     <div class="d-flex">
@@ -28,9 +27,22 @@
                         <vg-volume></vg-volume>
                     </div>
                     <vg-fullscreen></vg-fullscreen>
-                    <!-- <button class="custom-fullscreen-button">
-                        <img src="path/to/your/angular-image.png" alt="Fullscreen"/>
-                    </button> -->
+                    <div class="menu-container">
+                        <div class="menu" *ngIf="menuOpen">
+                            <vg-playback-button style="width:100%;height: 20px;"></vg-playback-button>
+                            <div (click)="toggleTimeDisplays()" class="d-flex curser-pointer">
+                                <mat-icon class="menu-icons">history</mat-icon>
+                                <span>Zeitmodus</span>
+                            </div>
+                            <div class="d-flex curser-pointer">
+                                <mat-icon class="menu-icons">sort</mat-icon>
+                                <span> switch Qualität</span>
+                            </div>
+                        </div>
+                        <button (click)="toggleMenu()" class="menu-button"> 
+                            <span class="material-icons">more_vert</span>
+                        </button>
+                    </div>
                 </vg-controls>
             </vg-player>
             <h1>{{ videoContent.title }}</h1>
@@ -46,29 +58,38 @@
                     <div class="d-flex content-interaction-container p-8 gap8">
                         <div class="vote-container    d-flex">
                             <div class="d-flex p-8 curser-pointer vote-field-left ">
-                                <span class="material-symbols-outlined">
+                                <span class="material-symbols-outlined thumb_up" [class.liked]="isLikedUp" (click)="toggleLike('isLikedUp', 'isLikedDown')">
                                     thumb_up
+                                    <ng-container *ngIf="isLikedUp">
+                                        <span *ngFor="let bubble of bubbles" 
+                                              [ngClass]="[bubble.shape, bubble.color]" 
+                                              [ngStyle]="{'left': bubble.left + 'px', 'top': bubble.top + 'px'}"
+                                              class="bubble"></span>
+                                </ng-container>
                                 </span>
-                                <span>999</span>
+                                <span>99</span>
                             </div>
-                            <div class="container-divider-container">
-                                <div class="container-divider  "></div>
+                            <div class="container-divider-container ">
+                                <div class="container-divider "></div>
                             </div>
-                            <div class="p-8 curser-pointer vote-field-right">
+                            <div class="p-8 curser-pointer vote-field-right ">
 
-                                <span class="material-symbols-outlined">
+                                <span (click)="toggleLike( 'isLikedDown','isLikedUp') " [class.liked]="isLikedDown" class="material-symbols-outlined thumb_down">
                                     thumb_down
                                 </span>
                             </div>
                         </div>
-                        <app-shared-button (click)="sharedLink(videoUrl)" [text]="'Teilen'"></app-shared-button>
+                        <app-shared-button (click)="sharedLink(videoUrl) " [text]=" 'Teilen' "></app-shared-button>
 
                     </div>
                 </div>
             </div>
-            <div class="info-container p-8 flex-column gap8">
+            <div class="info-container p-8 flex-column gap8 ">
                 <span>{{ videoContent.created_at }}</span>
-                <span>0 Aufrufe</span>
+                <div>
+                    <span>{{ videoContent.view_count }} </span>
+                    <span>Aufrufe</span>
+                </div>
                 <span>{{ videoContent.description }}</span>
             </div>
         </div>

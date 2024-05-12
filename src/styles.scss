@@ -536,8 +536,45 @@ body {
     direction: ltr;
 }
 
+.vg-icon-volume_down::after {
+    content: 'volume_down';
+    /* Symbol für Lautstärke aus in Material Icons */
+    font-family: 'Material Icons';
+    /* Stelle sicher, dass diese Schriftart geladen ist */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    /* oder eine andere passende Größe */
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+}
+
 .vg-icon-volume_off::after {
     content: 'volume_off';
+    /* Symbol für Lautstärke aus in Material Icons */
+    font-family: 'Material Icons';
+    /* Stelle sicher, dass diese Schriftart geladen ist */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    max-width: 60px;
+    /* oder eine andere passende Größe */
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+}
+
+.vg-icon-volume_mute::after {
+    content: 'volume_mute';
     /* Symbol für Lautstärke aus in Material Icons */
     font-family: 'Material Icons';
     /* Stelle sicher, dass diese Schriftart geladen ist */

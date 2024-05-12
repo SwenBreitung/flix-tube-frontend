@@ -23,6 +23,7 @@ export class VideoContent {
 
     public toJson() {
         return {
+            
             username: this.username,
             uid: this.id,
             videoFile: this.videoFile,
@@ -32,6 +33,7 @@ export class VideoContent {
             updated_at: this.updated_at,
             video_imgs: this.video_imgs,
             view_count: this.view_count,
+            created_at:this.created_at,
         };
     }
 }

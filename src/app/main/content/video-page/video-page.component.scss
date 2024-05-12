@@ -48,7 +48,6 @@ section {
 .outlined-icon {
     color: green !important;
     border: red !important;
-    /* Setzt die Füllfarbe auf transparent */
 }
 
 .material-symbols-outlined {
@@ -59,17 +58,130 @@ section {
     @include center-flex;
 }
 
-// vg-scrub-bar {
-//     height: 10px;
-//     /* Höhe des Scrub-Bars */
-//     background-color: #ccc;
-//     /* Farbe des Hintergrunds */
-// }
-// vg-scrub-bar .scrubber {
-//     width: 10px;
-//     /* Breite des Zieh-Handlers */
-//     height: 100%;
-//     /* Höhe des Zieh-Handlers */
-//     background-color: #f00;
-//     /* Farbe des Zieh-Handlers */
-// }
+.menu-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    .menu {
+        background-color: var(--main-background);
+        opacity: 0.9;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        top: -100px;
+        right: 0;
+        max-height: 100px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        position: absolute;
+        width: 104px;
+        border-radius: 8px;
+    }
+    .menu-button {
+        border: none;
+        border-radius: 50%;
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        .material-icons {
+            color: white;
+        }
+        &:hover {
+            background-color: var(--main-border-color);
+        }
+    }
+    .menu-icons {
+        font-size: 16px;
+    }
+}
+
+.liked {
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined {
+    position: relative;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    transition: color 0.4s;
+}
+
+.thumb_down.liked {
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    color: var(--text-color);
+}
+
+.thumb_up.liked {
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    color: red;
+    animation: colorWave 1s forwards;
+}
+
+@keyframes colorWave {
+    0% {
+        color: red;
+    }
+    50% {
+        color: blue;
+    }
+    75% {
+        color: green;
+    }
+    100% {
+        color: var(--text-color);
+    }
+}
+
+.bubble {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: popEffect 0.6s linear forwards;
+}
+
+.bubble.star {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    border-radius: 0;
+}
+
+.bubble.moon {
+    border-radius: 50%;
+    clip-path: circle(60% at 100% 50%);
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.purple {
+    background-color: purple;
+}
+
+@keyframes popEffect {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
