@@ -47,7 +47,7 @@ export class VideoPageComponent {
     { left: 10, top: -12, visible: false, color: 'yellow', shape: 'star' },
     { left: 0, top: 20, visible: false, color: 'purple', shape: 'circle' }
   ];
-  
+
   videoContent = new VideoContent;
   id: string | null = '';
   videoUrl: string | null = '';
@@ -94,12 +94,23 @@ export class VideoPageComponent {
 
     }
   }
-
+  switchLike(x: 'isLikedUp' | 'isLikedDown', y: 'isLikedUp' | 'isLikedDown') {
+    this.toggleLike(x, y) 
+    if (this.isLikedUp && this.id) {
+      this.backendService.addLike(this.id,'up');
+    }
+    if (this.isLikedDown && this.id) {
+      this.backendService.addLike(this.id,'down');
+    }
+    // if (!this.isLikedDown && !this.isLikedUp)
+    // removeLike(){
+    // }
+  }
 
   toggleLike(x: 'isLikedUp' | 'isLikedDown', y: 'isLikedUp' | 'isLikedDown') {
     this[x] = !this[x];
     this[y] = false;
-    
+
     this.bubbles.forEach(bubble => bubble.visible = this[x] && x === 'isLikedUp');  // Nur anzeigen, wenn isLikedUp aktiviert ist
 
     // Stelle die Blasen nach 700ms zurück, ohne sie zu entfernen
@@ -123,6 +134,8 @@ export class VideoPageComponent {
   toggleTimeDisplays() {
     this.currentTimeVisible = !this.currentTimeVisible;
   }
+
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }

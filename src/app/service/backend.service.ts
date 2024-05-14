@@ -50,9 +50,53 @@ export class BackendService {
         throw error;
       });
   }
-  
-  // fetchVideoUrl(videoId: string): Observable<string> {
-  //   const url = `${this.videosContentURL}/${videoId}/url`; // Beispiel-Endpunkt für Video-URLs
-  //   return this.http.get<string>(url);
-  // }
+
+  // JSON.stringify({ likeType: likeType })
+  addLike(videoId:string, likeType:string) {
+    fetch(`${this.videosContentURL + videoId}/like`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        //  'Authorization': 'Bearer ' + yourAuthToken ,// Auth-Token des Benutzers
+        body: JSON.stringify({
+          likeType: 'up'  // Annahme, dass 'up' oder 'down' gesendet wird
+      }) // Senden des Like-Typs im Request Body
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('send data')
+        return response.json();
+      } else {
+        throw new Error('Something went wrong');
+      }
+    })
+    .then(data => {
+      console.log('Like added successfully:', data);
+    })
+    .catch(error => console.error('Error adding like:', error));
+  }
+
+
+  removeLike(videoId:string) {
+    fetch(`/api/videos/${videoId}/like`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': 'Bearer ' + yourAuthToken // Auth-Token des Benutzers
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Something went wrong');
+      }
+    })
+    .then(data => {
+      console.log('Like removed successfully:', data);
+      // Update UI entsprechend
+    })
+    .catch(error => console.error('Error removing like:', error));
+  }
 }

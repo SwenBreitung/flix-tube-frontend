@@ -58,7 +58,7 @@
                     <div class="d-flex content-interaction-container p-8 gap8">
                         <div class="vote-container    d-flex">
                             <div class="d-flex p-8 curser-pointer vote-field-left ">
-                                <span class="material-symbols-outlined thumb_up" [class.liked]="isLikedUp" (click)="toggleLike('isLikedUp', 'isLikedDown')">
+                                <span class="material-symbols-outlined thumb_up" [class.liked]="isLikedUp" (click)="switchLike('isLikedUp', 'isLikedDown')">
                                     thumb_up
                                     <ng-container *ngIf="isLikedUp">
                                         <span *ngFor="let bubble of bubbles" 
@@ -74,7 +74,7 @@
                             </div>
                             <div class="p-8 curser-pointer vote-field-right ">
 
-                                <span (click)="toggleLike( 'isLikedDown','isLikedUp') " [class.liked]="isLikedDown" class="material-symbols-outlined thumb_down">
+                                <span (click)="switchLike( 'isLikedDown','isLikedUp') " [class.liked]="isLikedDown" class="material-symbols-outlined thumb_down">
                                     thumb_down
                                 </span>
                             </div>
