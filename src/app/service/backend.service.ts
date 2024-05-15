@@ -14,7 +14,7 @@ export class BackendService {
   videosContentURL: string = 'http://127.0.0.1:8000/video_content/'
   allContent: VideoContent[] = [];
   videoID: string = '';
-
+  
 
   loadeContentData() {
     fetch(this.videosContentURL)
@@ -53,12 +53,16 @@ export class BackendService {
 
   // JSON.stringify({ likeType: likeType })
   addLike(videoId: string, likeType: string) {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken)
+    let csrftoken = this.getCookie('csrftoken');
+    console.log(csrftoken)
     // fetch(`${this.videosContentURL + videoId}/like/`, {
       fetch(`http://127.0.0.1:8000/video_content/${videoId}/like/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': 'Bearer ' + yourAuthToken ,// Auth-Token des Benutzers  
+        'Authorization': 'Bearer ' + authToken      
       },
       body: JSON.stringify({
         likeType: 'up'
@@ -99,5 +103,18 @@ export class BackendService {
         // Update UI entsprechend
       })
       .catch(error => console.error('Error removing like:', error));
+  }
+
+  getCookie(name:string) {
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+          return decodeURIComponent(cookie.substring(name.length + 1));
+        }
+      }
+    }
+    return undefined; 
   }
 }

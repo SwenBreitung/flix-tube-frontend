@@ -49,7 +49,8 @@ export class LogInComponent {
         }
       })
       .then(data => {
-        localStorage.setItem('token', data.token); 
+        localStorage.setItem('authToken', data.token);
+        
         this.userName = '';
         this.password = '';
         this.router.navigate(['/main']);
