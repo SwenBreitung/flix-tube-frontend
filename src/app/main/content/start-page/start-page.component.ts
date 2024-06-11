@@ -21,7 +21,7 @@ export class StartPageComponent {
 
 
   ngOnInit(): void {
-    this.backendService.loadeContentData();
+    this.backendService.loadContentData();
     console.log('Komponente initialisiert',this.backendService.videoID);
     console.log('allContent initialisiert',this.backendService.allContent);
   }

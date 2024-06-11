@@ -113,10 +113,6 @@ export class VideoPageComponent {
 
     this.bubbles.forEach(bubble => bubble.visible = this[x] && x === 'isLikedUp');  // Nur anzeigen, wenn isLikedUp aktiviert ist
 
-    // Stelle die Blasen nach 700ms zurück, ohne sie zu entfernen
-    // setTimeout(() => {
-    //   this.bubbles.forEach(bubble => bubble.visible = false);
-    // }, 700);
   }
 
 

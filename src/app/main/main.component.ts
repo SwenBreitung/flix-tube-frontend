@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -13,5 +13,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
+  constructor(private router: Router) {
+
+}
+
+
 
 }

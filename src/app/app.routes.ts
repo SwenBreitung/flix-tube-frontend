@@ -11,6 +11,7 @@ import { VideoPageComponent } from './main/content/video-page/video-page.compone
 
 
 export const routes: Routes = [
+  { path: 'register', component: RegisterComponent },
     { path: 'main', component: MainComponent , children: [
         { path: '', component: StartPageComponent },
         { path: 'upload', component: VideoUploadComponent },

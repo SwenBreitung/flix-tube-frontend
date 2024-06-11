@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { VideoContent } from './../models/video-content.class'
-
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -15,17 +14,25 @@ export class BackendService {
   allContent: VideoContent[] = [];
   videoID: string = '';
   
-
-  loadeContentData() {
-    fetch(this.videosContentURL)
-      .then(response => response.json())
-      .then(data => {
-        console.log('allContentbevore', data);
-        this.allContent = data;
-        console.log('allContent', this.allContent);
-        // Hier kannst du weiteren Code hinzufügen, um die Daten zu verwenden
-      })
-      .catch(error => console.error('Error fetching video content:', error));
+  loadContentData() {
+    fetch('http://127.0.0.1:8000/video_content/', {
+      method: 'GET',
+      credentials: 'include'
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Not authenticated');
+      }
+    })
+    .then(data => {
+      this.allContent = data;
+      console.log('Content loaded', data);
+    })
+    .catch(error => {
+      console.error('Failed to load content:', error);
+    });
   }
 
   getVideoUrl(id: string) {
@@ -117,4 +124,21 @@ export class BackendService {
     }
     return undefined; 
   }
+
+  getCSRFToken(): string | null {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, 'csrftoken'.length + 1) === ('csrftoken=')) {
+                cookieValue = decodeURIComponent(cookie.substring('csrftoken'.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
 }

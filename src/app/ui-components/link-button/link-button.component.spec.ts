@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LinkButtonComponent } from './link-button.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { LinkButtonComponent } from './link-button.component'; // Beispielkomponente
 
 describe('LinkButtonComponent', () => {
   let component: LinkButtonComponent;
@@ -8,10 +9,19 @@ describe('LinkButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LinkButtonComponent]
-    })
-    .compileComponents();
-    
+      imports: [LinkButtonComponent], // Importieren Sie die Standalone-Komponente hier
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: 123 })
+          }
+        }
+      ]
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(LinkButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

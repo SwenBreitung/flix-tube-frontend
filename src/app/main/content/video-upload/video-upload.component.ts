@@ -33,17 +33,19 @@ export class VideoUploadComponent {
     public router: Router,
   ) { }
 
-  getCookie(name: string) {
+  getCookie(name: string): string | null {
+    let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith(name + '=')) {
-          return decodeURIComponent(cookie.substring(name.length + 1));
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
         }
-      }
     }
-    return undefined;
+    return cookieValue;
   }
 
 
@@ -56,6 +58,7 @@ export class VideoUploadComponent {
         formData.append('video', this.uploadedVideoFile);
         formData.append('video_imgs', this.uploadedImageFile);
       }
+
       console.log('test', formData);
       const csrftoken = this.getCookie('csrftoken');
       const headers: Record<string, string> = {};
@@ -67,6 +70,7 @@ export class VideoUploadComponent {
         method: 'POST',
         headers: headers,
         body: formData,
+        credentials: 'include' // Wichtig: Damit Cookies mitgesendet werden
       })
         .then(response => {
           if (!response.ok) {
@@ -80,6 +84,7 @@ export class VideoUploadComponent {
         .catch(error => {
           console.error('Error:', error);
         });
+
       this.resetForm();
       this.router.navigate(['main/start-page']);
     } else {
@@ -91,6 +96,7 @@ export class VideoUploadComponent {
       console.log('Formular bearbeitet:', form.dirty);
     }
   }
+
 
   getTitleErrors(form: NgForm) {
     if (!this.titleVideoField.errors) {
