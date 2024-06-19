@@ -95,17 +95,19 @@ export class VideoPageComponent {
     }
   }
   switchLike(x: 'isLikedUp' | 'isLikedDown', y: 'isLikedUp' | 'isLikedDown') {
-    this.toggleLike(x, y) 
-    if (this.isLikedUp && this.id) {
-      this.backendService.addLike(this.id,'up');
+    this.toggleLike(x, y);
+    if (!this.id) {
+      return
     }
-    if (this.isLikedDown && this.id) {
-      this.backendService.addLike(this.id,'down');
-    }
-    // if (!this.isLikedDown && !this.isLikedUp)
-    // removeLike(){
-    // }
-  }
+        if (this.isLikedUp) {
+            console.log('up');
+            this.backendService.addLike(this.id, 'up');
+        } else if (this.isLikedDown) {
+            console.log('down');
+            this.backendService.addLike(this.id, 'down');
+        }
+    
+}
 
   toggleLike(x: 'isLikedUp' | 'isLikedDown', y: 'isLikedUp' | 'isLikedDown') {
     this[x] = !this[x];

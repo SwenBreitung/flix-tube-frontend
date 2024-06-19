@@ -3,6 +3,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../service/auth.service';
 
 
 @Component({
@@ -13,9 +14,14 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
-  constructor(private router: Router) {
-
-}
+  constructor(
+    private authService:AuthService,
+    private router: Router
+  ){
+    this.authService.checkAuth();
+  }
+ 
+ 
 
 
 

@@ -33,13 +33,13 @@ export class AuthService {
     checkAuth() {
       fetch('http://127.0.0.1:8000/check_auth/', {
           method: 'GET',
-          credentials: 'include' // Wichtig: Damit Cookies mitgesendet werden
+          credentials: 'include' 
       })
       .then(response => {
           if (response.ok) {
               return response.json();
           } else {
-              throw new Error('Not authenticated');
+              throw new Error('Not authenticated,test');
           }
       })
       .then(data => {
@@ -49,6 +49,7 @@ export class AuthService {
       })
       .catch(error => {
           console.error('Authentication check failed:', error);
+          console.error('Failed to load content:', error);
           // Benutzer ist nicht eingeloggt, Weiterleitung zur Login-Seite
           this.router.navigate(['/login']);
       });

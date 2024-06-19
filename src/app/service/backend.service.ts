@@ -23,7 +23,10 @@ export class BackendService {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error('Not authenticated');
+        console.error('Server response:', response);
+        return response.json().then(err => {
+            throw new Error(`Error: ${err.detail || 'Not authenticated'}`);
+        });
       }
     })
     .then(data => {
@@ -31,6 +34,7 @@ export class BackendService {
       console.log('Content loaded', data);
     })
     .catch(error => {
+
       console.error('Failed to load content:', error);
     });
   }
@@ -41,7 +45,10 @@ export class BackendService {
 
 
   fetchVideoUrl(videoId: string): Promise<string> {
-    return fetch(this.videosContentURL + videoId)
+    return fetch(this.videosContentURL + videoId + '/', {
+      method: 'GET',
+      credentials: 'include'
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -60,33 +67,29 @@ export class BackendService {
 
   // JSON.stringify({ likeType: likeType })
   addLike(videoId: string, likeType: string) {
-    const authToken = localStorage.getItem('authToken');
-    console.log(authToken)
-    let csrftoken = this.getCookie('csrftoken');
-    console.log(csrftoken)
-    // fetch(`${this.videosContentURL + videoId}/like/`, {
+    console.log(likeType)
       fetch(`http://127.0.0.1:8000/video_content/${videoId}/like/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + authToken      
-      },
-      body: JSON.stringify({
-        likeType: 'up'
-      })
+        method: 'POST',  
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          likeType: likeType
+        })
     })
-      .then(response => {
+    .then(response => {
         if (response.ok) {
-          console.log('send data')
-          return response.json();
+            console.log('send data',response);
+            return response.json();
         } else {
-          throw new Error('Something went wrong');
+            throw new Error('Something went wrong');
         }
-      })
-      .then(data => {
+    })
+    .then(data => {
         console.log('Like added successfully:', data);
-      })
-      .catch(error => console.error('Error adding like:', error));
+    })
+    .catch(error => console.error('Error adding like:', error));
   }
 
 
