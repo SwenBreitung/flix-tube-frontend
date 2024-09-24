@@ -4,6 +4,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { LayoutService } from './../../service/layout.service';
 import { LogoComponent } from "../../ui-components/logo/logo.component";
 import { SearchbarComponent } from "../../ui-components/searchbar/searchbar.component";
+import { UserImgComponent } from "../../ui-components/user-img/user-img.component";
+import { Router } from '@angular/router';
 // import { SearchbarComponent } from "../../ui-components/searchbar/searchbar.component";
 // import { LogoComponent } from "../../ui-components/logo/logo.component";
 @Component({
@@ -12,16 +14,21 @@ import { SearchbarComponent } from "../../ui-components/searchbar/searchbar.comp
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
     imports: [
-        LogoComponent,
-        SearchbarComponent,
-        MatIconModule
-    ]
+    LogoComponent,
+    SearchbarComponent,
+    MatIconModule,
+    UserImgComponent
+]
 })
 export class HeaderComponent {
   constructor(
-    public layoutService: LayoutService
-
+    public layoutService: LayoutService,
+    public router: Router,
   ) {}
 
   HoverUploadText: boolean = false;
+
+  loadUploadFile() {
+    this.router.navigate(['main/upload']);
+  }
 }

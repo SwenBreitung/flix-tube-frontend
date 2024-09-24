@@ -16,7 +16,6 @@ export const routes: Routes = [
         { path: '', component: StartPageComponent },
         { path: 'upload', component: VideoUploadComponent },
         { path: 'start-page', component: StartPageComponent },
-        // { path: 'video-page', component: VideoPageComponent },
         { path: 'video-page/:id',component: VideoPageComponent },
         ],
     },   

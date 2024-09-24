@@ -95,26 +95,24 @@ export class VideoPageComponent {
     }
   }
   switchLike(x: 'isLikedUp' | 'isLikedDown', y: 'isLikedUp' | 'isLikedDown') {
+    console.log('test like button',x)
     this.toggleLike(x, y);
     if (!this.id) {
       return
     }
-        if (this.isLikedUp) {
+        if (x == 'isLikedUp') {
             console.log('up');
             this.backendService.addLike(this.id, 'up');
-        } else if (this.isLikedDown) {
+        } else if (x == 'isLikedDown') {
             console.log('down');
             this.backendService.addLike(this.id, 'down');
-        }
-    
+        }   
 }
 
   toggleLike(x: 'isLikedUp' | 'isLikedDown', y: 'isLikedUp' | 'isLikedDown') {
     this[x] = !this[x];
     this[y] = false;
-
-    this.bubbles.forEach(bubble => bubble.visible = this[x] && x === 'isLikedUp');  // Nur anzeigen, wenn isLikedUp aktiviert ist
-
+    this.bubbles.forEach(bubble => bubble.visible = this[x] && x === 'isLikedUp'); 
   }
 
 

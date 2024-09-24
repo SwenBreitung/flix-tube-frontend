@@ -4,7 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { PrimaryButtonComponent } from "../../ui-components/primary-button/primary-button.component";
 import { SecondaryButtonComponent } from "../../ui-components/secondary-button/secondary-button.component";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map, Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-log-in',
   standalone: true,
@@ -21,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class LogInComponent {
   constructor(
     private router: Router, 
+    private http: HttpClient,
   ) {}
 
 
@@ -28,21 +32,19 @@ export class LogInComponent {
   password: string = '';
 
 
-  login() {
-    let userName: string = this.userName;
-    let password: string = this.password;
-
-    console.log(this.userName);
-    console.log(this.password);
-    fetch('http://127.0.0.1:8000/simple_login/', {
+  loginCommon(url: string, bodyData?: any) {
+    let fetchOptions: any = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-           
         },
-        body: JSON.stringify({ username: userName, password: password }),
-        credentials: 'include' // Wichtig: Damit Cookies mitgesendet werden
-    })
+        credentials: 'include'
+    };
+    if (bodyData) {
+        fetchOptions.body = JSON.stringify(bodyData);
+    }
+
+    fetch(url, fetchOptions)
     .then(response => {
         if (response.ok) {
             return response.json();
@@ -51,11 +53,11 @@ export class LogInComponent {
         }
     })
     .then(data => {
-        // Kein direkter Zugriff auf das Token; es wird als HttpOnly-Cookie gesetzt
         this.userName = '';
         this.password = '';
-        console.log('data', data)
-        this.router.navigate(['/main']);
+        console.log('data', data);
+        localStorage.setItem('token', data.token); 
+        this.router.navigate(['/main']);  
     })
     .catch(error => {
         console.error('Login error:', error);
@@ -63,27 +65,22 @@ export class LogInComponent {
         return false;
     });
 }
-
-// Hilfsfunktion, um Cookies zu lesen (falls benötigt)
-getCookie(name: string) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Prüfen, ob das Cookie mit dem Namen beginnt
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
+loginAsGuest() {
+  this.loginCommon('http://localhost:8000/guest-login/');
 }
-  loginAsGuest() { 
-    // this.userName = 'gast';
-    // this.password = 'gast';
-    // this.login()
-  }
+
+
+
+login() {
+  let userName = this.userName;
+  let password = this.password;
+
+  console.log(userName);
+  console.log(password);
+  this.loginCommon('http://127.0.0.1:8000/simple_login/', { username: userName, password: password });
+}
+
 
 }
+
+

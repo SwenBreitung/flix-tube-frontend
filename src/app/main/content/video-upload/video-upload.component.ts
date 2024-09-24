@@ -63,14 +63,14 @@ export class VideoUploadComponent {
       const csrftoken = this.getCookie('csrftoken');
       const headers: Record<string, string> = {};
       if (csrftoken) {
-        headers['X-CSRFToken'] = csrftoken; // Jetzt können Sie sicher ein neues Property hinzufügen
+        headers['X-CSRFToken'] = csrftoken;
       }
 
       fetch('http://127.0.0.1:8000/video_content/', {
         method: 'POST',
         headers: headers,
         body: formData,
-        credentials: 'include' // Wichtig: Damit Cookies mitgesendet werden
+        credentials: 'include' 
       })
         .then(response => {
           if (!response.ok) {
@@ -138,7 +138,6 @@ export class VideoUploadComponent {
   }
 
 
-  //Viedo Upload
   onDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();

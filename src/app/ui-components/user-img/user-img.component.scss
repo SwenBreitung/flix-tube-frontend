@@ -1,0 +1,14 @@
+.user-img {
+    border-radius: 50%;
+    height: 38px;
+    width: 38px;
+    border: 2px solid green;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    line-height: 0 !important;
+    font-size: 20px;
+    cursor: pointer;
+}

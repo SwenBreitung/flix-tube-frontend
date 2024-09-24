@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { AuthService } from './auth.service';
 import { RegistrationData } from '../interfaces/registration-data.interface';
 
+
 describe('AuthService', () => {
   let service: AuthService;
   let httpMock: HttpTestingController;

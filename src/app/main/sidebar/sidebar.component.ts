@@ -67,10 +67,7 @@ export class SidebarComponent {
 
   // this.router.navigate(['/main/upload']);
   loadUploadFile() {
-    this.router.navigate(['main/upload']);
-    // this.router.url.includes('/main/upload');
-    // this.router.navigate(['/main/upload']);
-    
+    this.router.navigate(['main/upload']);   
     this.layoutService.openSidebar = false;
     console.log(this.layoutService.openSidebar)
   }
@@ -79,15 +76,11 @@ export class SidebarComponent {
 
   loadStartPage() {
     this.router.navigate(['main/start-page']);
-    //  this.router.url.includes('/main/start-page');
-    // this.router.navigate(['/main/start-page']);
-    
     this.layoutService.openSidebar = false;
     console.log(this.layoutService.openSidebar)
   }
   
   loadtestFile(){
-
     this.router.navigate(['/main/test']);
     this.layoutService.openSidebar = false;
     console.log(this.layoutService.openSidebar)

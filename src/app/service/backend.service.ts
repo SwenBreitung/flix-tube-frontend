@@ -6,17 +6,25 @@ import { Observable } from 'rxjs';
 })
 export class BackendService {
 
-  constructor(
+  constructor() { }
 
-  ) { }
   baseURL = 'http://127.0.0.1:8000/'
+  //baseURL = 'http://34.17.50.169/'
   videosContentURL: string = 'http://127.0.0.1:8000/video_content/'
+  //videosContentURL: string = 'http://34.17.50.169/video_content/'
   allContent: VideoContent[] = [];
   videoID: string = '';
-  
+  user:any = '';
+  userFirstLetter:string = '';
+
   loadContentData() {
+    const token = localStorage.getItem('token'); 
     fetch('http://127.0.0.1:8000/video_content/', {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`,
+      },
       credentials: 'include'
     })
     .then(response => {
@@ -45,9 +53,13 @@ export class BackendService {
 
 
   fetchVideoUrl(videoId: string): Promise<string> {
+    const token = localStorage.getItem('token');
     return fetch(this.videosContentURL + videoId + '/', {
       method: 'GET',
-      credentials: 'include'
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`,
+      },
     })
       .then(response => {
         if (!response.ok) {
@@ -67,12 +79,13 @@ export class BackendService {
 
   // JSON.stringify({ likeType: likeType })
   addLike(videoId: string, likeType: string) {
-    console.log(likeType)
+    const token = localStorage.getItem('token'); 
       fetch(`http://127.0.0.1:8000/video_content/${videoId}/like/`, {
         method: 'POST',  
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Token ${token}`,
         },
         body: JSON.stringify({
           likeType: likeType
@@ -90,6 +103,36 @@ export class BackendService {
         console.log('Like added successfully:', data);
     })
     .catch(error => console.error('Error adding like:', error));
+  }
+
+  loadSearchData(searchData: string): Promise<any[]> {
+    const token = localStorage.getItem('token'); 
+    const url = `http://127.0.0.1:8000/search/?query=${encodeURIComponent(searchData)}`;
+    
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`,
+      },
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return response.json().then(err => {
+          throw new Error(`Error: ${err.detail || 'Not authenticated'}`);
+        });
+      }
+    })
+    .then(data => {
+      console.log('search', data);
+      return data;  
+    })
+    .catch(error => {
+      console.error('Failed to load content:', error);
+      throw error;
+    });
   }
 
 
@@ -143,5 +186,12 @@ export class BackendService {
     return cookieValue;
 }
 
-
+  capitalizeFirstLetter(username: string) {
+    
+    if (!username) {
+      this.userFirstLetter = ''; 
+    }
+    this.userFirstLetter =username.charAt(0).toUpperCase();
+    console.log(this.userFirstLetter , 'testing')
+  }
 }

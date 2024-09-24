@@ -26,7 +26,7 @@ export class SecondaryButtonComponent {
 
 
 handleClick() {
-  this.action.emit(); // Sendet das Event nach außen
+  this.action.emit();
 }
 
 }

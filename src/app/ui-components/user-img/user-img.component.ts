@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { BackendService } from './../../service/backend.service'
 @Component({
   selector: 'app-user-img',
   standalone: true,
@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './user-img.component.scss'
 })
 export class UserImgComponent {
+  
+  constructor(
+    public backendService: BackendService,
+  ) {}
+
+
+
+
 
 }

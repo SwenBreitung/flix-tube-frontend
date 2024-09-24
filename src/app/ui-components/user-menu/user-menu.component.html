@@ -1,0 +1,9 @@
+@if(layoutService.isUserMenuOpen){
+<nav class="user-menu">
+    <ul>
+        <li (click)="loadStartPage()"><a>Start Page</a></li>
+        <li (click)="loadUploadFile()"><a>Upload</a></li>
+        <li (click)="logout()"><a>Log Out</a></li>
+    </ul>
+</nav>
+}

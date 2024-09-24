@@ -6,8 +6,15 @@ import { Injectable } from '@angular/core';
 export class LayoutService {
   isRegisterPage = true;
   openSidebar = false;
-  constructor() { }
+  isUserMenuOpen =false;
+
+  constructor() {}
+
   toggleMenu() {
-     this.openSidebar = !this.openSidebar; // Umschalten des Zustands
+    this.openSidebar = !this.openSidebar; 
+  }
+
+  toggleUserMenu(){
+    this.isUserMenuOpen = !this.isUserMenuOpen; 
   }
 }

@@ -62,9 +62,9 @@
                                     thumb_up
                                     <ng-container *ngIf="isLikedUp">
                                         <span *ngFor="let bubble of bubbles" 
-                                              [ngClass]="[bubble.shape, bubble.color]" 
-                                              [ngStyle]="{'left': bubble.left + 'px', 'top': bubble.top + 'px'}"
-                                              class="bubble"></span>
+                                                [ngClass]="[bubble.shape, bubble.color]" 
+                                                [ngStyle]="{'left': bubble.left + 'px', 'top': bubble.top + 'px'}"
+                                                class="bubble"></span>
                                 </ng-container>
                                 </span>
                                 <span>99</span>
@@ -93,12 +93,12 @@
                 <span>{{ videoContent.description }}</span>
             </div>
         </div>
-        <div>
+        <!-- <div>
             <span>chat</span>
-        </div>
+        </div> -->
     </div>
 
-    <div>
+    <!-- <div>
         <h2>Videovorschläge</h2>
-    </div>
+    </div> -->
 </section>
