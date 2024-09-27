@@ -26,29 +26,40 @@ export class VideoUploadComponent {
   uploadedImageFile: File | string = '';
   imageUrl?: string;
   uploadedVideoFileName?:string;
-  
+  isSwitchMenu: boolean = true;
   @ViewChild('fileVideoInput') fileVideoInput?: ElementRef;
   @ViewChild('fileImageInput') fileImageInput?: ElementRef;
   constructor(
     public router: Router,
-  ) { }
-
-  getCookie(name: string): string | null {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-  }
+  ) {}
 
 
+  /**
+ * Toggles the upload menu state based on the provided boolean value.
+ * Uses the `torgleTest` method to determine the state of `isSwitchMenu`.
+ */
+  torgleUploadMenu(value: boolean) {
+    this.isSwitchMenu = this.torgleTest(value);
+    console.log(this.isSwitchMenu)
+}
+
+
+/**
+ * Returns the opposite of the provided boolean value.
+ * 
+ */
+torgleTest(value: boolean): boolean {
+  return !value;
+}
+
+
+/**
+ * Handles video upload by submitting form data to the backend if the form is valid.
+ * The method appends the video and its metadata to a FormData object and sends
+ * a POST request to the server, including an authorization token in the headers.
+ * If the upload is successful, it navigates to the start page, and if there is
+ * an error, it logs the error message.
+ */
   videoUpload(form: NgForm) {
     if (form.valid) {
       const formData = new FormData();
@@ -58,19 +69,14 @@ export class VideoUploadComponent {
         formData.append('video', this.uploadedVideoFile);
         formData.append('video_imgs', this.uploadedImageFile);
       }
-
-      console.log('test', formData);
-      const csrftoken = this.getCookie('csrftoken');
-      const headers: Record<string, string> = {};
-      if (csrftoken) {
-        headers['X-CSRFToken'] = csrftoken;
-      }
-
+      const token = localStorage.getItem('token');
       fetch('http://127.0.0.1:8000/video_content/', {
         method: 'POST',
-        headers: headers,
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
         body: formData,
-        credentials: 'include' 
+        credentials: 'include',   
       })
         .then(response => {
           if (!response.ok) {
@@ -89,36 +95,40 @@ export class VideoUploadComponent {
       this.router.navigate(['main/start-page']);
     } else {
       this.getTitleErrors(form)
-      console.error('Formular ist nicht valide');
-      console.log('Formular gültig:', form.valid);
-      console.log('Formular ungültig:', form.invalid);
-      console.log('Formular unberührt:', form.pristine);
-      console.log('Formular bearbeitet:', form.dirty);
     }
   }
 
 
+/**
+ * Checks for validation errors in the title field of the form.
+ * If no errors are present, it returns null.
+ */
   getTitleErrors(form: NgForm) {
     if (!this.titleVideoField.errors) {
       return null;
     }
-    // if (this.titleField.errors['required']) {
-    //   return 'Titel ist erforderlich.';
-    // }
-    // if (this.titleField.errors['minlength']) {
-    //   return `Titel muss mindestens ${this.titleField.errors['minlength'].requiredLength} Zeichen lang sein, aktuell sind es nur ${this.titleField.errors['minlength'].actualLength} Zeichen.`;
-    // }
     return null;
   }
 
+
+  /**
+ * Resets the video upload form by clearing the title and description fields,
+ * resetting the image and video input fields, and toggling the menu state.
+ */
   resetForm() {
     this.videoContent.title = '';
     this.videoContent.description = '';
     this.resetImageInput();
     this.resetVideoInput();
+    this.isSwitchMenu = true;
   }
 
 
+  /**
+ * Resets the image input field by clearing its value, removing the uploaded image file,
+ * and resetting the image URL preview.
+ * If the file input element exists, it resets the input field value.
+ */
   resetImageInput(){
     if (this.fileImageInput && this.fileImageInput.nativeElement) {
       const input = this.fileImageInput.nativeElement as HTMLInputElement;
@@ -129,6 +139,10 @@ export class VideoUploadComponent {
   }
 
 
+  /**
+ * Resets the video input field by clearing the uploaded video file reference
+ * and resetting the value of the file input element if it exists.
+ */
   resetVideoInput(){
     this.uploadedVideoFile = undefined;
     if (this.fileVideoInput && this.fileVideoInput.nativeElement) {
@@ -138,12 +152,20 @@ export class VideoUploadComponent {
   }
 
 
+  /**
+ * Handles the drag over event to prevent the default behavior and stop event propagation.
+ * This is typically used to enable custom drag-and-drop behavior.
+ */
   onDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
   }
 
 
+  /**
+ * Handles the drop event when a video file is dropped onto a target element.
+ * Prevents the default behavior and processes the first dropped file.
+ */
   onVideoDrop(event: DragEvent) {
     event.preventDefault();
     if (event.dataTransfer && event.dataTransfer.files) {
@@ -153,6 +175,10 @@ export class VideoUploadComponent {
   }
 
 
+  /**
+ * Handles the event when a video file is selected via an input element.
+ * Processes the first selected file from the file input.
+ */
   onVideoFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files) {
@@ -161,26 +187,34 @@ export class VideoUploadComponent {
   }
 
 
+  /**
+ * Processes the selected video file. Checks if the file is a video and, if valid,
+ * stores the file, sets the file name, and creates a preview URL for the video.
+ */
   handleVideoFiles(files: File) {
       const file = files;
-      if (file && file.type.startsWith('video/')) { // Überprüft, ob es sich um eine Videodatei handelt
-        console.log('Video hochgeladen:', file.name);
+      if (file && file.type.startsWith('video/')) {
         this.uploadedVideoFile = file;
         this.uploadedVideoFileName = file.name;
-        this.videoUrl = URL.createObjectURL(file); // Erstellt eine URL für die Videodatei
-        console.log('Video-Datei:', this.uploadedVideoFile);
-        // Führe hier weitere Aktionen aus, z.B. das Hochladen auf einen Server oder das Hinzufügen zur Vorschau     
+        this.videoUrl = URL.createObjectURL(file);        
     }
   }
 
 
+  /**
+ * Handles the drag leave event to prevent default behavior and stop event propagation.
+ * Typically used to handle the event when a dragged item leaves the drop zone.
+ */
   onDragLeave(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
-  
   }
 
 
+  /**
+ * Handles the drop event when an image file is dropped onto a target element.
+ * Prevents default behavior and stops event propagation. Processes the dropped file(s).
+ */
   onImageDrop(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
@@ -191,6 +225,10 @@ export class VideoUploadComponent {
   }
 
 
+  /**
+ * Handles the event triggered when a file is selected via an input element.
+ * Processes the selected files by passing them to the handleFiles method.
+ */
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files) {
@@ -199,16 +237,17 @@ export class VideoUploadComponent {
   }
 
 
+  /**
+ * Processes the provided FileList by iterating over the files.
+ * For each file, it checks if the file is an image, and if valid, stores the file
+ * and creates a preview URL for it.
+ */
   handleFiles(files: FileList) {
     for (let i = 0; i < files.length; i++) {
       const file = files.item(i);
       if (file && file.type.startsWith('image/')) {
-        console.log('Bild hochgeladen:', file.name);
         this.uploadedImageFile = file;
-        console.log('lile',file)
-        console.log('uploadedImageFile',this.uploadedImageFile)
         this.imageUrl = URL.createObjectURL(file);
-        // Führe weitere Aktionen aus, z.B. das Hochladen auf einen Server oder das Hinzufügen zur Vorschau
       }
     }
   }

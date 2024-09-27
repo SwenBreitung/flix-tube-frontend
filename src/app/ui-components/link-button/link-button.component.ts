@@ -40,7 +40,4 @@ export class LinkButtonComponent {
        this.layoutService.isRegisterPage = this.router.url.includes('/register');
      });
    }
-  
-   
-   
 }

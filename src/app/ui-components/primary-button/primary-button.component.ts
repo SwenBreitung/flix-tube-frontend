@@ -23,7 +23,9 @@ export class PrimaryButtonComponent {
   @Input() text: string = 'Click me';
   @Output() action = new EventEmitter<void>();
   @Input() type: string = 'button';
+
+  
   handleClick() {
-    this.action.emit(); // Sendet das Event nach außen
+    this.action.emit(); 
   }
 }

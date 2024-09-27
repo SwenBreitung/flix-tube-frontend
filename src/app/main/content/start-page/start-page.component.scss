@@ -17,11 +17,14 @@
         object-position: center;
         width: 100%;
         height: 169px;
+        &:hover {
+            border-radius: 0;
+        }
     }
 }
 
 .start-page-container {
-    padding-top: 16px;
+    padding: 16px 16px 0 16px;
     gap: 24px;
     display: flex;
     flex-wrap: wrap;

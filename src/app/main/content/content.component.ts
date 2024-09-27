@@ -15,5 +15,4 @@ export class ContentComponent {
   ){
     this.authService.checkAuth();
   }
- 
 }

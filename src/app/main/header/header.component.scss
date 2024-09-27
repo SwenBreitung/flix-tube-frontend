@@ -37,3 +37,9 @@ section {
         display: flex;
     }
 }
+
+@media (max-width:700px) {
+    h1 {
+        display: none;
+    }
+}

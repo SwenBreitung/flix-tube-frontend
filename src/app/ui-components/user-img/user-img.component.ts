@@ -13,8 +13,4 @@ export class UserImgComponent {
     public backendService: BackendService,
   ) {}
 
-
-
-
-
 }

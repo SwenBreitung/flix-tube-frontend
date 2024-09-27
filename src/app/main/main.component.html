@@ -1,6 +1,12 @@
 <app-header class="d-flex"></app-header>
 
-<!-- <app-content class="d-flex d-grow"></app-content> -->
+<div *ngIf="backendService.searchResults && backendService.searchResults.length > 0" class="searchMenu">
+    <div class="searchresult-container">
+        <div *ngFor="let result of backendService.searchResults" class="searchResult">
+            <h3>{{ result.title }}</h3>
+        </div>
+    </div>
+</div>
 <router-outlet></router-outlet>
 <app-user-menu></app-user-menu>
 <app-sidebar></app-sidebar>

@@ -16,7 +16,7 @@ import { __await } from 'tslib';
 export class SearchbarComponent {
 
 
-  searchResults: any[] = [];
+  searchResults: any = {}; 
   searchResultsMain = [];
   inputFocused = false;
   constructor(
@@ -24,19 +24,24 @@ export class SearchbarComponent {
   ) { }
 
 
-
+  /**
+ * Handles the input change event, triggering a search operation when the input is not empty.
+ * If the input is empty, it clears the search results. Otherwise, it fetches search results
+ * from the backend and updates the relevant data.
+ */
   async onInputChange(event: Event): Promise<void> {
     if (event.target instanceof HTMLInputElement) {
       const input = event.target;
       const inputValue = input.value;
 
       if (inputValue.length === 0) {
-        this.searchResults = [];  // Leere Ergebnisse, wenn das Input-Feld leer ist
+        this.backendService.searchResults = [];
       } else {
         try {
-          // Warte auf die Ergebnisse von loadSearchData
           const results = await this.backendService.loadSearchData(inputValue);
-          this.searchResults = results;  // Die Suchergebnisse zuweisen
+          this.searchResults = results;
+          this.backendService.searchResults = this.searchResults.results;
+          console.log( this.backendService.searchResults,'backend')
         } catch (error) {
           console.error('Fehler beim Laden der Suchergebnisse:', error);
         }

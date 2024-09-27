@@ -28,7 +28,13 @@ export class HeaderComponent {
 
   HoverUploadText: boolean = false;
 
+
+  /**
+ * Navigates the user to the upload page.
+ * This method is typically used to load the file upload interface.
+ */
   loadUploadFile() {
     this.router.navigate(['main/upload']);
   }
 }
+

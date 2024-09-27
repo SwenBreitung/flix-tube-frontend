@@ -18,16 +18,32 @@ export class UserMenuComponent {
     public router: Router,
   ) { }
 
+
+  /**
+ * Navigates the user to the start page and toggles the user menu.
+ * This method is typically used to redirect to the main start page and manage the user menu state.
+ */
   loadStartPage() {
     this.router.navigate(['main/start-page']);
     this.layoutService.toggleUserMenu();
   }
 
+
+  /**
+ * Navigates the user to the upload page and toggles the user menu.
+ * This method is used to redirect to the upload page and manage the user menu state.
+ */
   loadUploadFile() {
     this.router.navigate(['main/upload']);
     this.layoutService.toggleUserMenu();
   }
 
+
+  /**
+ * Logs the user out and toggles the user menu.
+ * This method toggles the user menu's visibility and calls the `logout` function
+ * from the authentication service to log the user out.
+ */
   logout() {
     this.layoutService.toggleUserMenu();
     this.authService.logout()

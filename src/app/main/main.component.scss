@@ -1,0 +1,22 @@
+.searchMenu {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    top: 77px;
+    z-index: 999;
+    left: 78px;
+    .searchresult-container {
+        background-color: grey;
+        border-radius: 0 0 16px 16px;
+        padding: 8px 8px 0px 8px;
+        width: 29%;
+    }
+    .searchResult {}
+}
+
+@media (max-width:770px) {
+    .searchMenu {
+        top: 66px;
+    }
+}

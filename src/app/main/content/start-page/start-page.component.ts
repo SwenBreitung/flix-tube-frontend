@@ -26,9 +26,12 @@ export class StartPageComponent {
     console.log('allContent initialisiert',this.backendService.allContent);
   }
 
+
+/**
+ * Navigates to the video detail page based on the video ID.
+ * @param id - The ID of the video to load.
+ */
   loadVideo(id:string){
     this.router.navigate(['/main/video-page', id]);
   }
-
-  
 }

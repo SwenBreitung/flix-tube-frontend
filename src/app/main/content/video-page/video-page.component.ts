@@ -85,22 +85,30 @@ export class VideoPageComponent {
         this.videoContent.created_at = content.created_at;
         this.videoContent.video_imgs = content.video_imgs;
         this.videoContent.view_count = content.view_count;
-        console.log('videofile', this.videoContent.videoFile)
-        console.log('video', this.videoContent);
+        this.videoContent.up_likes_count = content.up_likes_count;
+        this.videoContent.liked_up = content.liked_up;
+        this.videoContent.liked_down = content.liked_down;
         this.media = { src: this.videoContent.videoFile, type: 'video/mp4' };
       }).catch(error => {
         console.error('Error fetching video content:', error);
       });
-
     }
   }
+
+
+/**
+ * Handles the like button switch logic. Toggles the like state and sends
+ * the like action ('up' or 'down') to the backend service based on the button pressed.
+ * @param x - The current like status ('isLikedUp' or 'isLikedDown').
+ * @param y - The previous like status ('isLikedUp' or 'isLikedDown').
+ */
   switchLike(x: 'isLikedUp' | 'isLikedDown', y: 'isLikedUp' | 'isLikedDown') {
     console.log('test like button',x)
     this.toggleLike(x, y);
     if (!this.id) {
       return
     }
-        if (x == 'isLikedUp') {
+    if (x == 'isLikedUp') {
             console.log('up');
             this.backendService.addLike(this.id, 'up');
         } else if (x == 'isLikedDown') {
@@ -109,6 +117,14 @@ export class VideoPageComponent {
         }   
 }
 
+
+/**
+ * Toggles the like status for the current like ('isLikedUp' or 'isLikedDown'),
+ * resets the opposite like status, and updates the visibility of bubbles
+ * based on whether 'isLikedUp' is active.
+ * @param x - The current like status to toggle ('isLikedUp' or 'isLikedDown').
+ * @param y - The opposite like status to reset.
+ */
   toggleLike(x: 'isLikedUp' | 'isLikedDown', y: 'isLikedUp' | 'isLikedDown') {
     this[x] = !this[x];
     this[y] = false;
@@ -116,10 +132,9 @@ export class VideoPageComponent {
   }
 
 
-  customAction() {
-    console.log('test button')
-  }
-
+/**
+ * Checks if the menu is open, and if so, toggles the menu to close it.
+ */
   isMenuOpen() {
     if (this.menuOpen) {
       this.toggleMenu();
@@ -127,27 +142,46 @@ export class VideoPageComponent {
   }
 
 
+  /**
+ * Toggles the visibility of the current time display by inverting its current state.
+ */
   toggleTimeDisplays() {
     this.currentTimeVisible = !this.currentTimeVisible;
   }
 
 
+  /**
+ * Toggles the menu's open state by inverting the current `menuOpen` status.
+ */
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
 
+  /**
+ * Sets the player API once the video player is ready.
+ * @param api - The VgApiService instance representing the video player API.
+ */
   onPlayerReady(api: VgApiService) {
     this.api = api;
   }
 
 
+  /**
+ * Automatically starts video playback if the player API is available.
+ */
   autoplay() {
-    console.log("Autoplaying video");
     this.api?.play();
   }
 
 
+  /**
+ * Copies the provided URL to the clipboard if the clipboard API is available.
+ * If no URL is provided, it shows an alert notifying the user that no link is available to share.
+ * Displays a success message on successful copy or an error message if the copy fails.
+ * 
+ * @param url - The URL to be copied to the clipboard. If null, an alert is shown.
+ */
   sharedLink(url: string | null) {
     if (navigator.clipboard) {
       if (!url) {

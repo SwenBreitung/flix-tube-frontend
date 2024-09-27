@@ -78,6 +78,17 @@
     --zindex-tooltip: 1070;
 }
 
+app-video-page {
+    height: 100%;
+}
+
+vg-player {
+    display: flex;
+    /* align-content: center; */
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 * {
     box-sizing: border-box;
 }

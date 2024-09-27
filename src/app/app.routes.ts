@@ -27,10 +27,5 @@ export const routes: Routes = [
       },
       {path: 'impressum', component: ImpressumComponent },
       {path: 'privacy', component: PrivacyComponent },
-    // {
-    //     path: '',
-    //     pathMatch: 'full',
-    //     redirectTo: 'main'  // Dies leitet die leere Route auf '/main' um
-    // },
     ];
 

@@ -16,16 +16,8 @@
         height: 24px;
         border: none;
         &:focus+.input-field {
-            // Annahme: .input-field ist ein benachbartes Element
             border: 1px solid blue;
         }
-        // &:focus {
-        //     .input-fild {
-        //         border: 1px solid blue;
-        //     }
-        //     // border: none;
-        //     // outline: none;
-        // }
     }
 }
 
@@ -44,9 +36,6 @@
     position: absolute;
     height: 80px;
     overflow: auto;
-    // bottom: -37px;
-    // right: 0px;
-    // left: 16px;
     @include column;
     background-color: var(--text-white);
     border-radius: 0 0 10px 10px;
